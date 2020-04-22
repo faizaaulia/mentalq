@@ -1,0 +1,94 @@
+a:hover{
+    color: #239A94;
+    }
+    .navbar-brand{
+    margin:10px;
+    }
+    .nav-item{
+    margin-left: 40px;
+    }
+    
+    .nav-link{
+    color: black;
+    margin : 10px;
+    font-weight: 500;
+    }
+    
+    .profile{
+    margin-right: 30px;
+    }
+    .button {
+        background-color: #169c9b;
+        font-family: 'Open Sans';
+        font-size: 16px;
+        border: none;
+        color: white;
+        padding: 8px 45px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 50px;
+        margin-left: 893px;
+        cursor: pointer;
+        border-radius: 90px;
+    }
+    
+    .button:hover{
+        background-color: #454545;
+    }
+    .button:active {
+        transform: translateY(4px);
+    }
+
+    body {
+        /* background-image: url(<?= base_url('assets/img/BG ABU.jpg')?>); */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    textarea {
+        color: #169c9b;
+        font-weight: 700;
+        display: block;
+        font-family: 'Open Sans';
+        border: none;
+        text-decoration: none;
+        margin: auto;
+        margin-top: 0px;
+        border-radius: 35px;
+        padding: 20px;
+    }
+
+    h1{
+        color: #169c9b;
+        font-family: 'Open Sans';
+        font-size: 28px;
+        margin-top: 40px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .p1{
+        color: #169c9b;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 16px;
+        margin-left: 345px;
+        margin-bottom: 13px;
+    }
+
+    select{
+        color: #169c9b;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 16px;
+        margin-left: 345px;
+        margin-bottom: 13px;
+        border-radius: 35px;
+        height: 30px;
+        width: 685px;
+        padding-left: 10px;
+        background-color: transparent;
+        border-color: #169c9b;
+    }
