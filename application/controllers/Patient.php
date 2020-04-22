@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Patient extends CI_Controller {
-   public function Consult()
+   public function consultPatient()
    {
       $this->load->view('ConsultPasien');
    }
