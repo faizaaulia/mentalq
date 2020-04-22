@@ -1,0 +1,42 @@
+*{
+    font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+.nav-item{
+    margin-left: 40px;
+}
+    
+.nav-link{
+    color: black;
+    font-weight: bold;
+}
+    
+.profile{
+    color: #239A94;
+    margin-right: 30px;
+}
+
+.tulisan{
+    text-align: center;
+    margin-top: 90px;
+}
+
+.tulisan h4{
+    font-style: italic;
+}
+
+.trendingtopic h4{
+    text-align: center;
+    margin-top: 90px;
+    font-weight: bold;
+}
+
+.card{
+    margin: 10px auto;
+    padding: 60px 20px;
+    width: 700px;
+}
