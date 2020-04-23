@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="<?= base_url('Patient/Consult')?>">Consult <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="<?= base_url('Patient/ConsultPatient')?>">Consult <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url('Consultant/showConsultant')?>">Consultant <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?= base_url('Consultant/Consultant')?>">Consultant <span class="sr-only">(current)</span></a>
                 </li>
               </ul>
               <span class="navbar-text">
@@ -38,19 +38,18 @@
         </nav>
         <h1>Consult</h1>
         <p class="p1">What's Happen?</p>
-        <form id="consult">
-            <textarea rows="7" cols="70" id= "keluhan"name="keluhan" form="consult" style="margin-left: 343px;"></textarea>
-        </form>
+        <form id="consult" action="<?= base_url('Patient/inputKeluhan')?>" method='post'>
+            <textarea rows="7" cols="70" id="keluhan"name="keluhan" form="consult" style="margin-left: 343px;"></textarea>
+
         <p class="p1">Select Consultant</p>
         <select name="ConsultantList" style="margin-left: 343px;">
-            <option value="bronx">dr. Cimoy Montox ( 02.00, 19/02/2020, RS BUNDA MANIA )</option>
-            <option value="brooklyn">dr. Cimoy Montox ( 02.00, 19/02/2020, RS BUNDA MANIA )</option>
-            <option value="manhattan">dr. Cimoy Montox ( 02.00, 19/02/2020, RS BUNDA MANIA )</option>
-            <option value="queens">dr. Cimoy Montox ( 02.00, 19/02/2020, RS BUNDA MANIA )</option>
-            <option value="statenisland">dr. Cimoy Montox ( 02.00, 19/02/2020, RS BUNDA MANIA )</option>
+          <?php foreach ($consultants as $consultant): ?>
+            <option value="<?= $consultant->noSTR ?>"><?= $consultant->namaConsultant ?> ( <?= $consultant->jamKerja ?>, <?= $consultant->schedule ?>, <?= $consultant->tempatPraktik ?> )</option>
+          <?php endforeach ?>
         </select>
         <br>
-        <input type="button" class="button" value="Set">
+        <input type="submit" class="button" value="Set" >
+        </form>
         
     </body>
 </html>
