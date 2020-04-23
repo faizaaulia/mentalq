@@ -13,14 +13,14 @@
   </head>
   <body style="background-image: url('<?= base_url('assets/img/BG ABU.jpg')?>');">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="home.html"><img width="200px" src="<?=base_url('assets/img/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
+      <a class="navbar-brand" href="#"><img width="200px" src="<?=base_url('assets/img/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link consult" href="#" >Consult <span class="sr-only">(current)</span></a>
+            <a class="nav-link consult" href="<?= base_url('Consultant/replyConsult')?>" >Consult <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
               <a class="nav-link" href="#">Consultant <span class="sr-only">(current)</span></a>
@@ -36,7 +36,7 @@
     </nav>
 
     <div class="kotakprofile">
-        <form action="">
+        <form action="<?=base_url('Consultant/setUpdateProfile')?>" method=POST>
         <div class="row">
             <div class="col-md-4">
                 <img src="<?=base_url('assets/img/CONSULTANT-ICON.png')?>" width:200px alt="">
@@ -46,24 +46,24 @@
                   </div>
             </div>
             <div class="col-md-8">
-                <p class="namaconsultant">dr. Cimoy Montox</p>
+                <p class="namaconsultant"><?=$profile->namaConsultant ?></p>
                 <hr>
                 <p class="kotaktext">Consultant Type</p>
-                <input type="text" name="consultant_type" class="form_edit_profile_consultant" placeholder="Kids Psychologyst">
+                <input type="text" name="jenisPsikologi" class="form_edit_profile_consultant" value="<?=$profile->jenisPsikologi ?>"> 
                 <br>
                 <p class="kotaktext">Year Experience</p>
-                <input type="text" name="year_experience" class="form_edit_profile_consultant" placeholder="1 year">
+                <input type="text" name="lamaPsikologi" class="form_edit_profile_consultant" value="<?=$profile->lamaPsikologi ?>">
                 <p class="kotaktext">Work Place</p>
-                <input type="text" name="work_place" class="form_edit_profile_consultant" placeholder="RS. BUNDA MANIA">
+                <input type="text" name="tempatPraktik" class="form_edit_profile_consultant" value="<?=$profile->tempatPraktik ?>">
                 <p class="kotaktext">Email</p>
-                <input type="text" name="email" class="form_edit_profile_consultant" placeholder="cimoymontox@gmail.com">
+                <input type="text" name="email" class="form_edit_profile_consultant" value="<?=$profile->email ?>">
                 <p class="kotaktext">Phone Number</p>
-                <input type="text" name="phonenumber" class="form_edit_profile_consultant" placeholder="082328930989">
+                <input type="text" name="noHP" class="form_edit_profile_consultant" value="<?=$profile->noHP ?>">
                 <p class="kotaktext">Work Hours</p>
-                <input type="text" name="workhours" class="form_edit_profile_consultant" placeholder="08.30 am">
+                <input type="text" name="jamKerja" class="form_edit_profile_consultant" value="<?=$profile->jamKerja ?>">
                 <p class="kotaktext">Schedule Date</p>
-                <input type="date" name="scheduledate" class="form_edit_profile_consultant">
-                <a class="btn btn-primary" href="#" role="button">Save</a>
+                <input type="date" name="schedule" class="form_edit_profile_consultant" value="<?=$profile->schedule?>">
+                <input type="submit" class="btn btn-primary" role="button" value="Save">
             
             </div>
         </div>

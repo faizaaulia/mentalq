@@ -13,14 +13,14 @@
   </head>
     <body style="background-image: url('<?= base_url('assets/img/BG ABU.jpg')?>');">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="home.html"><img width="200px" src="<?=base_url('assets/img/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
+      <a class="navbar-brand" href="#"><img width="200px" src="<?=base_url('assets/img/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link consult" href="#" >Consult <span class="sr-only">(current)</span></a>
+            <a class="nav-link consult" href="<?= base_url('Consultant/replyConsult')?>" >Consult <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
               <a class="nav-link" href="#">Consultant <span class="sr-only">(current)</span></a>
@@ -38,19 +38,21 @@
     <div class="card" style="width: 50rem;">
       <div class="card-body">
         <p class="card-text">From</p>
-        <p class="card-text name">Masruru Farud</p>
+        <p class="card-text name"><?=$consult->row()->namaPasien ?></p>
         <hr>
-        <p class="card-text">Saya Stres Banyak Tugas aahhh unchhh unch Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p class="card-text"><?=$consult->row()->keluhan ?></p>
         <hr>
-        <form action="">
+        
+        <!-- Form Set Reply Consults -->
+        <form action="<?=base_url('Consultant/setReplyConsults')?>" method=POST>
           <label for="status">Status : </label>
-          <select id="status">
+          <select id="status" name="status" value="<?=$consult->status ?>">
             <option value="Belum Selesai">Belum Selesai</option>
             <option value="Selesai">Selesai</option>
           </select>
           <hr>
           <p class="card-text">Solusi</p>
-          <textarea id="solusi" rows="3" cols="83"></textarea>
+          <textarea id="solusi" rows="3" cols="83" name="solusi"></textarea>
           <input type="submit" class="tombol_set" value="Set">
         </form>
       </div>
