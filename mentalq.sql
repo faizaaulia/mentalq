@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Apr 2020 pada 17.32
+-- Waktu pembuatan: 22 Apr 2020 pada 21.10
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -108,7 +108,7 @@ ALTER TABLE `consultants`
 --
 ALTER TABLE `consults`
   ADD UNIQUE KEY `consults_idx` (`idPasien`,`noSTR`),
-  ADD KEY `noSTR` (`noSTR`);
+  ADD KEY `consults_ibfk_1` (`noSTR`);
 
 --
 -- Indeks untuk tabel `patients`
@@ -140,13 +140,8 @@ ALTER TABLE `patients`
 -- Ketidakleluasaan untuk tabel `consults`
 --
 ALTER TABLE `consults`
-  ADD CONSTRAINT `consults_ibfk_1` FOREIGN KEY (`noSTR`) REFERENCES `consultants` (`noSTR`);
-
---
--- Ketidakleluasaan untuk tabel `patients`
---
-ALTER TABLE `patients`
-  ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`idPasien`) REFERENCES `consults` (`idPasien`);
+  ADD CONSTRAINT `consults_ibfk_1` FOREIGN KEY (`noSTR`) REFERENCES `consultants` (`noSTR`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `consults_ibfk_2` FOREIGN KEY (`idPasien`) REFERENCES `patients` (`idPasien`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

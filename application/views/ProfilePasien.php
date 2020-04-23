@@ -27,7 +27,8 @@
             </li>
           </ul>
           <span class="navbar-text">
-            <a class="nav-link profile" href="#">Nama <span class="sr-only">(current)</span></a>
+            <!-- <a class="nav-link profile" href="#">Nama <span class="sr-only">(current)</span></a> -->
+            <a class="nav-link profile" href="#"><?php echo $patients->namaPasien?> <span class="sr-only">(current)</span></a>
           </span>
           <span>
             <a class="nav-link login" href="#">LogOut <span class="sr-only">(current)</span></a>
@@ -41,22 +42,30 @@
                 <img src="<?= base_url('assets/PATIENT ICON.png')?>" alt="">
             </div>
             <div class="col-md-8">
-                <h3 class="namapasien">Masruru Farud</h3>
+                
+                <!-- <h3 class="namapasien">Masruru Farud</h3> -->
+                <h3 class="namapasien"><?php echo $patients->namaPasien?> </h3>
                 <br>
                 <h6>Gender</h6>
-                <h5>Male</h5>
+                <!-- <h5>Male</h5> -->
+                <h5><?php echo $patients->gender?></h5>
                 <br>
                 <h6>Email</h6>
-                <h5>blablablablabla@gmail.com</h5>
+                <!-- <h5>blablablablabla@gmail.com</h5> -->
+                <h5><?php echo $patients->email?></h5>
                 <br>
                 <h6>Address</h6>
-                <h5>Jalan Telekomunikasi</h5>
+                <!-- <h5>Jalan Telekomunikasi</h5> -->
+                <h5><?php echo $patients->alamat?></h5>
                 <br>
                 <h6>Phone Number</h6>
-                <h5>088812345678</h5>
+                <!-- <h5>088812345678</h5> -->
+                <h5><?php echo $patients->noHP?></h5>
                 <br>
                 <h6>Age</h6>
-                <h5>29 Years Old</h5>
+                <!-- <h5>29 Years Old</h5> -->
+                <h5><?php echo $patients->umur?> Years Old</h5>
+                
             </div>
         </div>
     </div>
@@ -70,23 +79,25 @@
         <div class="tulisanconsult">
             <h3>Consult Set</h3>
         </div>
-        <div class="kotakconsult">
+        <?php foreach($consult->result() as $cs): ?>
+          <div class="kotakconsult">
             <div class="isikotak">
                 <h6>To</h6>
-                <h5 class="dokter">Dr. Cimoy Montox</h5>
-                <h6>blablablabla</h5>
+                <h5 class="dokter"><?php echo $cs->namaConsultant?></h5>
+                <h6><?php echo $cs->keluhan?></h5>
                 <div class="container">
                     <div class="row">
                         <h6>Status: </h6>
-                        <h6 class="status"> Selesai</h6>    
+                        <h6 class="status"> <?php echo $cs->status?></h6>    
                     </div>
                 <div class="row">
                     <h6>Solusi: </h6>
-                    <h6> blablabla</h6>
+                    <h6> <?php echo $cs->solusi?></h6>
                 </div>
             </div>
         </div>    
         </div>
+        <?php endforeach ?>
     </section>
 
     <!-- Optional JavaScript -->
