@@ -10,10 +10,13 @@ class Patient extends CI_Controller {
 	}
  
 	function updateProfile(){
-		$where = array('idPasien' => $idPasien);
-		$data['patients'] = $this->m_data->edit_data($where,'user')->result();
+		$data['profile'] = $this->Patient_model->getProfilePatient();
+		$this->load->view('edit_profile_patient',$data);
+	}
 	
-		$this->load->view('edit_profile_patient');
-	}	
+	public function setUpdateProfile()
+	{
+		$this->Patient_model->ubahDataPasien();
+	}
 	 
 }

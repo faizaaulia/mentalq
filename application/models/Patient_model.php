@@ -2,27 +2,24 @@
 
         class Patient_model extends CI_model{
 
+            public function getProfilePatient(){
+                $idPasien= '1';
+                return $this->db->where('idPasien',$idPasien)->get('patients')->row();
+            }
+            
 
-            public function ubahDataPasien($idPasien)
+            //Mendapatkan data terbaru dari Pasien
+            public function ubahDataPasien()
             {
-                $data = [
-                    "namaPasien" => $this->input->post('namaPasien', true),
-                    "email" => $this->input->post('email', true),
-                    "password" => $this->input->post('password', true),
-                    "gender" => $this->input->post('gender', true),
-                    "alamat" => $this->input->post('alamat', true),
-                    "noHP" => $this->input->post('noHP', true),
-                    "umur" => $this->input->post('umur', true),
-                ];
+                $data =array(
+                     
+                    'email' => $this->input->post('email'),
+                    'alamat' => $this->input->post('alamat'),
+                    'noHP' => $this->input->post('noHP'),
+                    'umur' => $this->input->post('umur'),
+                );
                 //use query builder class to update data patient based on idPasien
-                $this->db->where('idPasien', $idPasien);
-                return $this->db->update('patients', $data);
-                $this->db->where('idPasien',$idPasien)->update('patients',$data);
-                if ($this->db->affected_rows()>0) {
-                    return true;
-                } else {
-                    return false;
-                }
+                 $this->db->where('idPasien','1')->update('patients',$data);
             }
         }
 ?>

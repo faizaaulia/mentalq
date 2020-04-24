@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Consultant extends CI_Controller {
-<<<<<<< Updated upstream
- 
+
     public function profile(){
         $this->load->view('profile_psikolog');
     }
@@ -13,7 +12,7 @@ class Consultant extends CI_Controller {
 
 		$this->load->view('welcome_message');
 	}
-=======
+
 
 
 	 
@@ -30,5 +29,5 @@ class Consultant extends CI_Controller {
     }
 
 	 
->>>>>>> Stashed changes
+ 
 }

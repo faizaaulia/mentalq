@@ -37,7 +37,7 @@
     </nav>
 
     <div class="kotakprofile">
-        <form action="">
+        <form action="<?=base_url('Patient/setUpdateProfile')?>" method=POST>
         <div class="row">
             <div class="col-md-4">
                 <img src="<?=base_url('assets/img/PATIENT-ICON.png') ?>" width:200px alt="">
@@ -47,19 +47,20 @@
                   </div>
             </div>
             <div class="col-md-8">
-                <p class="namapatient">Masruru</p>
+                <p class="namapatient"><?=$profile->namaPasien ?></p>
                 <hr>
                 <p class="kotaktext">Email</p>
-                <input type="text" name="email" class="form_edit_profile_patient" placeholder=" ">
+                <input type="text" name="email" class="form_edit_profile_patient" placeholder=" " value ="<?=$profile->email ?>">
                 <br>
                 <p class="kotaktext">Addres</p>
-                <input type="text" name="year_experience" class="form_edit_profile_patient" placeholder="">
+                <input type="text" name="alamat" class="form_edit_profile_patient" placeholder="" value="<?=$profile->alamat?>"> 
                 <p class="kotaktext">Phone Number</p>
-                <input type="text" name="work_place" class="form_edit_profile_patient" placeholder=" ">
+                <input type="text" name="noHP" class="form_edit_profile_patient" placeholder=" " value="<?=$profile->noHP?>">
                 <p class="kotaktext">Age</p>
-                <input type="text" name="email" class="form_edit_profile_patient" placeholder=" ">
+                <input type="text" name="umur" class="form_edit_profile_patient" placeholder=" " value="<?=$profile->umur?>"> 
                 
-                <a class="btn btn-primary" href="#" role="button">Save</a>
+                <!-- <a class="btn btn-primary" href="#" role="button" value ="Save">Save</a> -->
+                <input type="submit" class="btn btn-primary" role="button" value="Save">
             
             </div>
         </div>
