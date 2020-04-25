@@ -1,0 +1,72 @@
+* {
+    font-family: 'Nunito Sans';
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    background-color: #f1f1f1;
+    font-weight: 600;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem; /* py px */
+    background-color: #f1f1f1;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+.collapse.navbar-collapse {
+    font-weight: 600;
+}
+
+#main-content {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+#wrapper #main-content .container-fluid #dataTable {
+    font-weight: 400;
+}
+
+.btn.btn-add {
+    background-color: #009492;
+    color: white;
+}
+
+.btn.btn-add:hover {
+    background-color: #006968;
+    color: white;
+}
+
+label {
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #main-content {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
