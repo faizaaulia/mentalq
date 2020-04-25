@@ -1,7 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+class Patient_model extends CI_Model{
+    public function insertKeluhan() {
+        $data = array (
+            'idPasien' => 1222,
+            'noSTR' => $this->input->post('ConsultantList'),
+            'keluhan' => $this->input->post('keluhan'),
+            'solusi' => '-',
+            'status' => '0'
+            );
+         $this->db->insert('consults',$data);
+    }
 
-class Patient_model extends CI_Model {
     Public function getDataPatients() {
         $username = 1;
         return $this->db->where('idPasien',$username)->get('patients')->row();
@@ -17,4 +26,6 @@ class Patient_model extends CI_Model {
          ->join('patients', 'patients.idPasien = consults.idPasien');
         return $this->db->get();
     }
+
 }
+?>
