@@ -1,0 +1,80 @@
+a:hover{
+    color: #239A94;
+}
+.navbar-brand{
+    margin:10px;
+}
+.nav-item{
+    margin-left: 40px;
+}
+
+.nav-link{
+    color: black;
+    margin : 10px;
+    font-weight: 500;
+}
+
+body {
+    /* background-image: url('ASSET/BG ABU.jpg'); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1{
+    color: #454545;
+    font-family: 'Open Sans';
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.kartu .card {
+    border: none;
+    margin-bottom: 8px;
+    /* margin-left: -145px; */
+    width: 500px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.kartu .card:hover {
+    background-color:#454545;
+    color: white;
+}
+.kartu .card img {
+    width: 20%;
+    float: left;
+    margin-right: 10px;
+}
+.kartu .card a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+.card-body {
+    color: #454545;
+}
+.card-body:hover {
+    color: white;
+}
+.card-body p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -20px;
+}
+.modal-content {
+    border: none;
+    border-radius: 24px;
+    color: #bdbdbd;
+}
+.modal-body .col-md-7 p {
+    font-size: 18px;
+    margin-top: -10px;
+    font-weight: 600;
+}
+
+.modal-body .col-md-6 img{
+    float: left; 
+    width: 45%; 
+    margin-left: -25px;
+}
