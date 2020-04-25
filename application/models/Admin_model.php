@@ -3,16 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
 
-    public function getDataPatients() {
-        return $this->db->get('patients')
-                        ->result();
-    }
-
-    public function getDataConsultants() {
-        return $this->db->get('consultants')
-                        ->result();
-    }
-
     public function detailConsultant($strnumber) {
         return $this->db->where('noSTR', $strnumber)
                         ->get('consultants')
@@ -24,4 +14,14 @@ class Admin_model extends CI_Model {
                         ->delete('consultants');
     }
 
+    public function editConsultant($strnumber) {
+        return $this->db->where('noSTR',$strnumber)
+                        ->get('consultants')
+                        ->row();
+    }
+
+    public function updateConsultant($strnumber,$data) {
+        return $this->db->where('noSTR',$strnumber)
+                        ->update('consultants',$data);
+    }
 }

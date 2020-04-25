@@ -70,20 +70,22 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" style="font-weight: 600;">Add New Consultant</h5>
+                        <h5 class="modal-title" style="font-weight: 600;"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="">
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label>STR Number</label>
-                                <input type="text" class="form-control" name="strnumber" placeholder="STR Number">
+                                <input type="text" class="form-control strnumber" name="strnumber" placeholder="STR Number">
+                                <div id="error-strnumber" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Name">
+                                <input type="text" class="form-control name" name="name" placeholder="Name">
+                                <div id="error-name" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Gender</label>
@@ -96,43 +98,50 @@
                                         <input type="radio" class="custom-control-input" name="gender" id="female" value="female">
                                         <label class="custom-control-label" for="female">Female</label>
                                     </div>
+                                    <div id="error-gender" class="errormess"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Consultant Type</label>
-                                <input type="text" class="form-control" name="consultantType" placeholder="Consultant Type (Ex: Kids Psyclogist, etc.)">
+                                <input type="text" class="form-control consultantType" name="consultantType" placeholder="Consultant Type (Ex: Kids Psyclogist, etc.)">
+                                <div id="error-consultantType" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Work Place</label>
-                                <input type="text" class="form-control" name="workplace" placeholder="Work Place">
+                                <input type="text" class="form-control workplace" name="workplace" placeholder="Work Place">
+                                <div id="error-workplace" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Alumni</label>
-                                <input type="text" class="form-control" name="alumni" placeholder="Alumni (Ex: Telkom University, etc.)">
+                                <input type="text" class="form-control alumni" name="alumni" placeholder="Alumni (Ex: Telkom University, etc.)">
+                                <div id="error-alumni" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">+62</span>
                                     </div>
-                                    <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+                                    <input type="number" class="form-control phone" name="phone" placeholder="Phone Number">
                                 </div>
+                                <div id="error-phone" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label class="email">Email</label>
                                 <input type="text" class="form-control email" name="email" placeholder="Email">
+                                <div id="error-email" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label class="password">Password</label>
                                 <input type="text" class="form-control password" name="password" placeholder="Password">
+                                <div id="error-password" class="errormess"></div>
                             </div>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-add">Save Changes</button>
+                        <input type="submit" class="btn btn-add btn-modal" value="Save Changes">
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -153,8 +162,17 @@
                         "columnDefs": [ {
                             "targets": -1,
                             "data": null,
-                            "defaultContent": "<a href='<?= base_url("admin/detailConsultant/") ?>' class='btn btn-info btn-sm detailConsultant'><i class='fa fa-eye'></i></a> <a href='<?= base_url("admin/editConsultant/") ?>' class='btn btn-warning btn-sm detailConsultant'><i class='fa fa-pencil' style='color:white'></i></a> <a href='<?= base_url("admin/deleteConsultant/") ?>' class='btn btn-danger btn-sm deleteConsultant'><i class='fa fa-trash'></i></a>"
+                            "defaultContent": "<a href='<?= base_url("admin/detailConsultant/") ?>' class='btn btn-info btn-sm detailConsultant'><i class='fa fa-eye'></i></a> <a href='<?= base_url("admin/editConsultant/") ?>' class='btn btn-warning btn-sm editConsultant'><i class='fa fa-pencil' style='color:white'></i></a> <a href='<?= base_url("admin/deleteConsultant/") ?>' class='btn btn-danger btn-sm deleteConsultant'><i class='fa fa-trash'></i></a>"
                         } ]
+                    });
+                }
+
+                function fetchPatients() {
+                    var table = $('#dataTable').DataTable({
+                        "ajax": {
+                            url : "<?= base_url('admin/fetchPatients') ?>",
+                            type : 'get',
+                        }
                     });
                 }
 
@@ -163,17 +181,36 @@
                     var data =  $('#dataTable').DataTable().row($(this).parents('tr')).data();
                     const action = this.href;
                     this.href += data[4];
-                    if ($(this).hasClass('detailConsultant')) {
+
+                    if ($(this).hasClass('detailConsultant') || $(this).hasClass('editConsultant')) {
+                        if ($(this).hasClass('detailConsultant')) {
+                            $('.modal-title').html('Detail Consultant')
+                            $("form :input").prop("disabled", true);
+                            $('.btn-modal').hide();
+                            $("input[name='password']").attr('type','password');
+                        } else {
+                            $('.modal-title').html('Edit Consultant');
+                            $('form').trigger('reset');
+                            $("form :input").prop("disabled", false );
+                            $("input[name='password']").attr('type','text');
+                            $('.btn-modal').show();
+                            $('form').attr('action','<?= base_url('admin/updateConsultant/') ?>' + data[4]);
+                            $('form').attr('name','update');
+                        }
                         $.ajax({
                             url: this.href,
                             dataType: 'json',
                             success: function (res) {
                                 $('#modalAdd').modal('show');
-                                console.log(res);
-                                // $("input[name='strnumber']").val(res.noSTR);
-                                // $("input[name='gender']").prop('disabled',true);
-                                // res.gender == 'male' ? $('#male').prop('checked',true) : $('#female').prop('checked',true);
-                                // $("input[name='password']").attr('type','password');
+                                $("input[name='strnumber']").val(res.noSTR);
+                                $("input[name='name']").val(res.namaConsultant);
+                                res.gender == 'male' ? $('#male').prop('checked',true) : $('#female').prop('checked',true);
+                                $("input[name='consultantType']").val(res.jenisPsikologi);
+                                $("input[name='workplace']").val(res.tempatPraktik);
+                                $("input[name='alumni']").val(res.alumni);
+                                $("input[name='phone']").val(res.noHP);
+                                $("input[name='email']").val(res.email);
+                                $("input[name='password']").val(res.password);
                             }
                         });
                     }
@@ -208,16 +245,84 @@
                     this.href = action;
                 });
                 <?php if ($this->uri->segment(2)): ?>
-                    // fetchPatients();
-                    console.log('fetchPatients');
+                    fetchPatients();
                 <?php else: ?>
                     fetchConsultants();
                 <?php endif ?>
+
+                $('.add-consultant').click(function() {
+                    $('.modal-title').html('Add New Consultant')
+                    $('form').trigger('reset');
+                    $("form :input").prop("disabled", false );
+                    $("input[name='password']").attr('type','text');
+                    $('.btn-modal').show();
+                    $('form').attr('action','<?= base_url('admin/addConsultant') ?>');
+                    $('form').attr('name','insert');
+                })
+
+                $('.btn-modal').click(function(e) {
+                    e.preventDefault();
+                    switch ($('form').attr('name')) {
+                        case 'insert':
+                            console.log('insert');
+                            break;
+                        case 'update':
+                            $.ajax({
+                                url: $('form').attr('action'),
+                                data: $('form').serialize(),
+                                dataType: "json",
+                                type: 'post',
+                                success: function(data) {
+                                    if (data.status == 'success') {
+                                        $('#modalAdd').modal('hide');
+                                        $('#dataTable').DataTable().destroy();
+                                        fetchConsultants();
+                                        Swal.fire(
+                                            'Updated!',
+                                            'The data has been updated',
+                                            'success'
+                                        );
+                                    } else {
+                                        $.each(data, function(key, value) {
+                                            if (value) {
+                                                $('.' + key).addClass('is-invalid');
+                                                $('.' + key).parents('.form-group').find('#error-'+key).html(value);
+                                                $('.' + key).on('keyup', function () { 
+                                                    $('.' + key).removeClass('is-invalid');
+                                                    $('.' + key).parents('.form-group').find('#error-' + key).html(" ");
+                                                });
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            break;
+                        default:
+                            break;
+                    }
+                })
+                $('#modalAdd').on('show.bs.modal',function() {
+                    $('.form-control').removeClass('is-invalid');
+                    $('.errormess').html('');
+                });
             })
         </script>
         <style>
             .active_tab {
                 color: black;
+            }
+
+            /* remove input type number arrow */
+            /* Chrome, Safari, Edge, Opera */
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+                input[type=number] {
+                -moz-appearance: textfield;
             }
         </style>
     </div>

@@ -5,10 +5,11 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Consultant Type</th>
 				<th>Email</th>
+				<th>Gender</th>
+				<th>Alamat</th>
 				<th>Phone</th>
-				<th>Action</th>
+				<th>Age (years)</th>
 			</tr>
 		</thead>
 		<tbody>
