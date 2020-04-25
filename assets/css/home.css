@@ -20,6 +20,16 @@ body{
     margin-right: 30px;
 }
 
+.btn.btn-login {
+    background-color: #009492;
+    color: white;
+}
+
+.btn.btn-login:hover {
+    background-color: #006968;
+    color: white;
+}
+
 .tulisan{
     text-align: center;
     margin-top: 90px;
