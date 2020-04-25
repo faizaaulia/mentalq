@@ -15,6 +15,7 @@ class Consultant_model extends CI_Model {
             //'nama_kolom' => $this->input->post('name_inputan'),
                            'jenisPsikologi' => $this->input->post('jenisPsikologi'),
                            'lamaPsikologi' => $this->input->post('lamaPsikologi'),
+                           'photo' => $this->input->post('photo'),
                            'tempatPraktik' => $this->input->post('tempatPraktik'),
                            'email' => $this->input->post('email'),
                            'noHP' => $this->input->post('noHP'),
@@ -32,7 +33,7 @@ class Consultant_model extends CI_Model {
             ->from('consults')
             ->where('consults.idPasien',2)
             ->join('patients', 'patients.idPasien = consults.idPasien');
-            return $this->db->get();
+            return $this->db->get()->row();
         // return $this->db->where('noSTR', $STR)->get('consults')->row();
     }
 

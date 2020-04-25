@@ -38,21 +38,21 @@
     <div class="card" style="width: 50rem;">
       <div class="card-body">
         <p class="card-text">From</p>
-        <p class="card-text name"><?=$consult->row()->namaPasien ?></p>
+        <p class="card-text name"><?=$consult->namaPasien ?></p>
         <hr>
-        <p class="card-text"><?=$consult->row()->keluhan ?></p>
+        <p class="card-text"><?=$consult->keluhan ?></p>
         <hr>
         
         <!-- Form Set Reply Consults -->
         <form action="<?=base_url('Consultant/setReplyConsults')?>" method=POST>
           <label for="status">Status : </label>
           <select id="status" name="status" value="<?=$consult->status ?>">
-            <option value="Belum Selesai">Belum Selesai</option>
-            <option value="Selesai">Selesai</option>
+            <option value="Belum Selesai" <?= ($consult->status == 'Belum Selesai') ? "selected" : "" ?>>Belum Selesai</option>
+            <option value="Selesai" <?= ($consult->status == 'Selesai') ? "selected" : "" ?>>Selesai</option>
           </select>
           <hr>
           <p class="card-text">Solusi</p>
-          <textarea id="solusi" rows="3" cols="83" name="solusi"></textarea>
+          <textarea id="solusi" rows="3" cols="83" name="solusi"><?=$consult->solusi?></textarea>
           <input type="submit" class="tombol_set" value="Set">
         </form>
       </div>

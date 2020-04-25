@@ -39,10 +39,16 @@
         <form action="<?=base_url('Consultant/setUpdateProfile')?>" method=POST>
         <div class="row">
             <div class="col-md-4">
+
+              <?php if($profile->photo==''){?>
                 <img src="<?=base_url('assets/img/CONSULTANT-ICON.png')?>" width:200px alt="">
+              <?php }else{ ?>
+                <img src="<?=base_url('assets/img/Consultants/').$profile->photo?>" width:300px alt="">
+              <?php }?>
+
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose Photo</label>
+                    <input type="file" class="custom-file-input" id="customFile" name="photo" >
+                    <label class="custom-file-label" for="customFile">Update Photo</label>
                   </div>
             </div>
             <div class="col-md-8">
@@ -64,6 +70,7 @@
                 <p class="kotaktext">Schedule Date</p>
                 <input type="date" name="schedule" class="form_edit_profile_consultant" value="<?=$profile->schedule?>">
                 <input type="submit" class="btn btn-primary" role="button" value="Save">
+
             
             </div>
         </div>
