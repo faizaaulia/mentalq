@@ -21,12 +21,18 @@ class Auth_model extends CI_Model {
                 'email' => $email,
                 'logged_in' => TRUE,
             );
-            if ($admin->num_rows() > 0)
+            if ($admin->num_rows() > 0) {
                 $data['role'] = 'admin';
-            if ($consultants->num_rows() > 0)
-                $data['role'] = 'consultantw';
-            if ($patients->num_rows() > 0)
+                $data['id'] = $admin->row()->idAdmin;
+            }
+            if ($consultants->num_rows() > 0) {
+                $data['role'] = 'consultants';
+                $data['id'] = $consultants->row()->noSTR;
+            }
+            if ($patients->num_rows() > 0) {
                 $data['role'] = 'patients';
+                $data['id'] = $patients->row()->idPasien;
+            }
             $this->session->set_userdata($data);
             return true;
         } else {

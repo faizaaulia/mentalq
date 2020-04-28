@@ -10,16 +10,23 @@ class Patient extends CI_Controller {
 	}
 
 	public function consultPatient() {
-		$data['consultants'] = $this->Consultant_model->getDataConsultants();
-		$this->load->view('ConsultPasien', $data);
+		if ($this->session->userdata('logged_in')) {
+			$data['consultants'] = $this->Consultant_model->getDataConsultants();
+			$this->load->view('ConsultPasien', $data);
+		} else
+			redirect('home');
 	}
 
 	public function inputKeluhan() {
 		$this->Patient_model->insertKeluhan();
 	}
 
-	public function showConsultant() {
-		$this->load->view('Consultant');
+	public function Consultant() {
+	    if ($this->session->userdata('logged_in')) {
+            $data['consultants'] = $this->Consultant_model->getDataConsultants();
+		    $this->load->view('Consultant', $data);
+        } else
+            redirect('home');
 	}
 
 	public function showProfile() {

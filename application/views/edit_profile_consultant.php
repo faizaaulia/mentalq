@@ -36,7 +36,16 @@
     </nav>
 
     <div class="kotakprofile">
-        <form action="<?=base_url('Consultant/setUpdateProfile')?>" method=POST>
+		<?php
+			$notifsukses = $this->session->flashdata('notifsukses');
+			$notiferror = $this->session->flashdata('notiferror');
+
+			if (!empty($notifsukses)) 
+				echo "<div class='alert alert-success'>$notifsukses</div>";
+			if (!empty($notiferror)) 
+				echo "<div class='alert alert-danger'>$notiferror</div>";
+		?>
+        <form action="<?=base_url('Consultant/setUpdateProfile')?>" method="POST" enctype='multipart/form-data'>
         <div class="row">
             <div class="col-md-4">
 
@@ -49,7 +58,8 @@
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile" name="photo" >
                     <label class="custom-file-label" for="customFile">Update Photo</label>
-                  </div>
+                </div>
+				<!-- <input type="file" class="" id="customFile" name="photo" > -->
             </div>
             <div class="col-md-8">
                 <p class="namaconsultant"><?=$profile->namaConsultant ?></p>

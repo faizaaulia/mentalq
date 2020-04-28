@@ -8,13 +8,12 @@ class Consultant extends CI_Controller {
 		$this->load->model('Consultant_model');
     }
     
-	public function index() {
-        $this->load->view('welcome_message');
-    }
-
 	public function Consultant() {
-	    $data['consultants'] = $this->Consultant_model->getDataConsultants();
-		$this->load->view('Consultant', $data);
+	    if ($this->session->userdata('logged_in')) {
+            $data['consultants'] = $this->Consultant_model->getDataConsultants();
+		    $this->load->view('Consultant', $data);
+        } else
+            redirect('home');
 	}
 
 	public function showConsultant($noSTR) {
@@ -22,20 +21,22 @@ class Consultant extends CI_Controller {
         $res['baseURL'] = base_url('assets/img/Consultants/');
 		echo json_encode($res);
     }
-
-	public function profile(){
-		$this->load->view('profile_psikolog');
-	}
                 
 	public function showProfile() {
-		$data['consultants']= $this->Consultant_model->getDataConsultant();
-		$this->load->view('profile_psikolog',$data);
+		if ($this->session->userdata('logged_in')) {
+            $data['consultants']= $this->Consultant_model->getDataConsultant();
+		    $this->load->view('profile_psikolog',$data);
+        } else
+            redirect('home');
     }
                 
     // Mendapat Keliuhan dari Consults
     public function replyConsult() {
-        $data['consult'] = $this->Consultant_model->getConsults();
-        $this->load->view('consult_consultant',$data);
+        if ($this->session->userdata('logged_in')) {
+            $data['consult'] = $this->Consultant_model->getConsults();
+            $this->load->view('consult_consultant',$data);
+        } else
+            redirect('home');
     }
         
         
@@ -46,8 +47,11 @@ class Consultant extends CI_Controller {
         
     // Mendapat Profil dari Consultant
     public function updateProfile() {
-        $data['profile'] = $this->Consultant_model->getProfileConsultant();
-        $this->load->view('edit_profile_consultant',$data);
+        if ($this->session->userdata('logged_in')) {
+            $data['profile'] = $this->Consultant_model->getProfileConsultant();
+            $this->load->view('edit_profile_consultant',$data);
+        } else
+            redirect('home');
     }
         
     // Mengeset Profil yang sudah diisi di form Edit Profil

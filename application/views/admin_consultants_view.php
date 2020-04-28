@@ -6,6 +6,7 @@
 <table id="dataTable" class="display" style="width:100%;">
 	<thead>
 		<tr>
+			<th class="foto">#</th>
 			<th>Name</th>
 			<th>Consultant Type</th>
 			<th>Email</th>

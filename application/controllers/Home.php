@@ -11,8 +11,19 @@ class Home extends CI_Controller{
 
     public function index(){
         if ($this->session->userdata('logged_in')) {
-            $data['main_view'] = 'home_view';
-            $this->load->view('template_view',$data); 
+            switch ($this->session->userdata('role')) {
+                case 'admin':
+                    redirect('admin');
+                    break;
+                case 'consultants':
+                    redirect('consultant/replyConsult');
+                    break;
+                case 'patients':
+                    redirect('patient/consultPatient');
+                    break;
+                default:
+                    break;
+            }
         } else {
             $data['main_view'] = 'home_view';
             $this->load->view('template_view',$data); 

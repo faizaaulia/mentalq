@@ -14,14 +14,12 @@ class Admin_model extends CI_Model {
                         ->delete('consultants');
     }
 
-    public function editConsultant($strnumber) {
-        return $this->db->where('noSTR',$strnumber)
-                        ->get('consultants')
-                        ->row();
-    }
-
     public function updateConsultant($strnumber,$data) {
         return $this->db->where('noSTR',$strnumber)
                         ->update('consultants',$data);
+    }
+
+    public function insertConsultant($data) {
+        return $this->db->insert('consultants',$data);
     }
 }

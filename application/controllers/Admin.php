@@ -11,8 +11,11 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$data['main_view'] = 'admin_consultants_view';
-		$this->load->view('template_admin_view', $data);
+		if ($this->session->userdata('logged_in')) {
+			$data['main_view'] = 'admin_consultants_view';
+			$this->load->view('template_admin_view', $data);
+		} else
+			redirect('home');
 	}
 
 	public function patients() {
@@ -40,6 +43,7 @@ class Admin extends CI_Controller {
 
 		foreach ($query->result() as $row) {
 			$data[] = array(
+					$row->photo,
 					$row->namaConsultant,
 					$row->jenisPsikologi,
 					$row->email,
@@ -91,19 +95,27 @@ class Admin extends CI_Controller {
 	}
 
 	public function editConsultant($strnumber) {
-		$res = $this->Admin_model->editConsultant($strnumber);
+		$res = $this->Admin_model->detailConsultant($strnumber);
 		echo json_encode($res);
 	}
 
 	public function updateConsultant($strnumber) {
-		// |is_unique[consultants.noSTR] TODO: unique strnumber & email
-        $this->form_validation->set_rules('strnumber', 'STR Number', 'required');
+		$detail = $this->Admin_model->detailConsultant($strnumber);
+		if ($this->input->post('strnumber') != $strnumber)
+			$is_unique_str = '|is_unique[consultants.noSTR]';
+		else
+			$is_unique_str = '';
+		if ($this->input->post('email') != $detail->email)
+			$is_unique_email = '|is_unique[consultants.email]';
+		else
+			$is_unique_email = '';
+        $this->form_validation->set_rules('strnumber', 'STR Number', 'required'.$is_unique_str);
 		$this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('consultantType', 'Consultant Type', 'required');
         $this->form_validation->set_rules('workplace', 'Workplace', 'required');
         $this->form_validation->set_rules('alumni', 'Alumni', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'required|min_length[10]|max_length[11]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email'.$is_unique_email);
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		
 		if ($this->form_validation->run()) {
@@ -111,7 +123,7 @@ class Admin extends CI_Controller {
 				'noSTR' => $this->input->post('strnumber'),
 				'namaConsultant' => $this->input->post('name'),
 				'jenisPsikologi' => $this->input->post('consultantType'),
-				// 'gender' => $this->input->post('gender'),
+				'gender' => $this->input->post('gender'),
 				'tempatPraktik' => $this->input->post('workplace'),
 				'alumni' => $this->input->post('alumni'),
 				'noHP' => $this->input->post('phone'),
@@ -125,6 +137,52 @@ class Admin extends CI_Controller {
                 'strnumber' => form_error('strnumber', '<p class="text-danger">', '</p>'),
                 'name' => form_error('name', '<p class="text-danger">', '</p>'),
                 'consultantType' => form_error('consultantType', '<p class="text-danger">', '</p>'),
+                'workplace' => form_error('workplace', '<p class="text-danger">', '</p>'),
+                'alumni' => form_error('alumni', '<p class="text-danger">', '</p>'),
+                'phone' => form_error('phone', '<p class="text-danger">', '</p>'),
+                'email' => form_error('email', '<p class="text-danger">', '</p>'),
+				'password' => form_error('password', '<p class="text-danger">', '</p>'),
+				'status' => 'error'
+			);
+		}
+		echo json_encode($json);
+	}
+
+	public function addConsultant() {
+		$this->form_validation->set_rules('strnumber', 'STR Number', 'required|is_unique[consultants.noSTR]');
+		$this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('consultantType', 'Consultant Type', 'required');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('workplace', 'Workplace', 'required');
+        $this->form_validation->set_rules('alumni', 'Alumni', 'required');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'required|min_length[10]|max_length[11]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[consultants.email]');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		
+		if ($this->form_validation->run()) {
+			$data = array(
+				'noSTR' => $this->input->post('strnumber'),
+				'namaConsultant' => $this->input->post('name'),
+				'jenisPsikologi' => $this->input->post('consultantType'),
+				'gender' => $this->input->post('gender'),
+				'tempatPraktik' => $this->input->post('workplace'),
+				'alumni' => $this->input->post('alumni'),
+				'noHP' => $this->input->post('phone'),
+				'email' => $this->input->post('email'),
+				'password' => $this->input->post('password'),
+				'photo' => 'avatar.jpg', //default photo
+				'lamaPsikologi' => '1 tahun',
+				'schedule' => date("Y-m-d"),
+				'jamKerja' => '12'
+			);
+			$this->Admin_model->insertConsultant($data);
+			$json['status'] = 'success';
+		} else {
+			$json = array(
+                'strnumber' => form_error('strnumber', '<p class="text-danger">', '</p>'),
+                'name' => form_error('name', '<p class="text-danger">', '</p>'),
+                'consultantType' => form_error('consultantType', '<p class="text-danger">', '</p>'),
+                'gender' => form_error('gender', '<p class="text-danger">', '</p>'),
                 'workplace' => form_error('workplace', '<p class="text-danger">', '</p>'),
                 'alumni' => form_error('alumni', '<p class="text-danger">', '</p>'),
                 'phone' => form_error('phone', '<p class="text-danger">', '</p>'),
