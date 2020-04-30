@@ -179,7 +179,7 @@
                 $('#dataTable tbody').on('click', 'a', function (e) {
                     e.preventDefault();
                     var data =  $('#dataTable').DataTable().row($(this).parents('tr')).data();
-                    const action = this.href;
+                    const ACTION = this.href;
                     this.href += data[4];
 
                     if ($(this).hasClass('detailConsultant') || $(this).hasClass('editConsultant')) {
@@ -216,7 +216,7 @@
                     }
 
                     if ($(this).hasClass('deleteConsultant')) {
-                        const url = this.href;
+                        const URL = this.href;
                         Swal.fire({
                             title: 'Delete Consultant?',
                             text: 'Are you sure to delete ' + data[0] + '?',
@@ -227,7 +227,7 @@
                         }).then((result) => {
                             if (result.value) {
                                 $.ajax({
-                                    url: url,
+                                    url: URL,
                                     type: 'ajax',
                                     success: function() {
                                         $('#dataTable').DataTable().destroy();
@@ -242,7 +242,7 @@
                             }
                         });
                     }
-                    this.href = action;
+                    this.href = ACTION;
                 });
                 <?php if ($this->uri->segment(2)): ?>
                     fetchPatients();
