@@ -1,0 +1,58 @@
+*{
+  font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+a:hover{
+  color: #239A94;
+}
+.navbar-brand{
+  margin:10px;
+}
+.nav-item{
+  margin-left: 40px;
+}
+  
+.nav-link{
+  color: black;
+  margin : 10px;
+  font-weight: 500;
+}
+  
+.profile{
+  margin-right: 30px;
+}
+.consult{
+  color : #239A94;
+  font-weight: bold;
+}
+.card{
+  margin : 10px auto;
+}
+
+.card-text{
+  margin:0px;
+  text-align: justify;  
+}
+
+.name{
+  font-size: 20px;
+  font-weight: bold;
+  color : #239A94;
+}
+
+.tombol_set{
+  margin-top : 10px;
+  margin-left : 520px;
+	background: #239A94;
+	color: white;
+	font-size: 11pt;
+	width: 30%;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+}
+

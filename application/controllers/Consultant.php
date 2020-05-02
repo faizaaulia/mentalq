@@ -7,7 +7,7 @@ class Consultant extends CI_Controller {
 	    parent::__construct();
 		$this->load->model('Consultant_model');
     }
-
+    
     public function index()
     {
         if ($this->session->userdata('logged_in')) {
@@ -17,7 +17,7 @@ class Consultant extends CI_Controller {
         } else
             redirect('home');
     }
-    
+
 	public function Consultant() {
 	    if ($this->session->userdata('logged_in')) {
             $data['consultants'] = $this->Consultant_model->getDataConsultants();

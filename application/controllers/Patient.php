@@ -17,7 +17,7 @@ class Patient extends CI_Controller {
 			$this->load->view('template_view',$data);
 		} else
 			redirect('home');
-	}
+	}	
 
 	public function consultPatient() {
 		if ($this->session->userdata('logged_in')) {

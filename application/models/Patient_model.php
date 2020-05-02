@@ -25,7 +25,6 @@ class Patient_model extends CI_Model{
 		return $this->db->where('idPasien',$this->session->userdata('id'))->get('patients')->row();
 	}
 
-
 	//Mendapatkan data terbaru dari Pasien
 	public function ubahDataPasien() {
 	    $data = array(

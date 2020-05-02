@@ -50,7 +50,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Nama Admin
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="<?= base_url('home/logout') ?>">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -91,15 +91,15 @@
                                 <label>Gender</label>
                                 <div class="radio-container custom-control custom-control-inline">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" name="gender" id="male" value="male">
+                                        <input type="radio" class="custom-control-input gender" name="gender" id="male" value="male">
                                         <label class="custom-control-label" for="male">Male</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" name="gender" id="female" value="female">
+                                        <input type="radio" class="custom-control-input gender" name="gender" id="female" value="female">
                                         <label class="custom-control-label" for="female">Female</label>
                                     </div>
-                                    <div id="error-gender" class="errormess"></div>
                                 </div>
+                                <div id="error-gender" class="errormess"></div>
                             </div>
                             <div class="form-group">
                                 <label>Consultant Type</label>
@@ -160,9 +160,20 @@
                             type : 'get',
                         },
                         "columnDefs": [ {
-                            "targets": -1,
-                            "data": null,
-                            "defaultContent": "<a href='<?= base_url("admin/detailConsultant/") ?>' class='btn btn-info btn-sm detailConsultant'><i class='fa fa-eye'></i></a> <a href='<?= base_url("admin/editConsultant/") ?>' class='btn btn-warning btn-sm editConsultant'><i class='fa fa-pencil' style='color:white'></i></a> <a href='<?= base_url("admin/deleteConsultant/") ?>' class='btn btn-danger btn-sm deleteConsultant'><i class='fa fa-trash'></i></a>"
+                            "targets": 0,
+                            "render": function(data) {
+                                return "<img src='<?= base_url('assets/img/consultants/') ?>" + data + "' style='width: 50%'>";
+                            }
+                        }, {
+                            "targets": 4,
+                            "render": function(data) {
+                                return '0' + data;
+                            }
+                        }, {
+                            "targets": 5,
+                            "render": function(data) {
+                                return "<a href='<?= base_url("admin/detailConsultant/") ?>" + data + "' class='btn btn-info btn-sm detailConsultant'><i class='fa fa-eye'></i></a> <a href='<?= base_url("admin/editConsultant/") ?>" + data + "' class='btn btn-warning btn-sm editConsultant'><i class='fa fa-pencil' style='color:white'></i></a> <a href='<?= base_url("admin/deleteConsultant/") ?>" + data + "' class='btn btn-danger btn-sm deleteConsultant'><i class='fa fa-trash'></i></a>"
+                            }
                         } ]
                     });
                 }
@@ -194,7 +205,7 @@
                             $("form :input").prop("disabled", false );
                             $("input[name='password']").attr('type','text');
                             $('.btn-modal').show();
-                            $('form').attr('action','<?= base_url('admin/updateConsultant/') ?>' + data[4]);
+                            $('form').attr('action','<?= base_url('admin/updateConsultant/') ?>' + data[5]);
                             $('form').attr('name','update');
                         }
                         $.ajax({
@@ -219,7 +230,7 @@
                         const URL = this.href;
                         Swal.fire({
                             title: 'Delete Consultant?',
-                            text: 'Are you sure to delete ' + data[0] + '?',
+                            text: 'Are you sure to delete ' + data[1] + '?',
                             icon: 'warning',
                             showCancelButton: true,
                             cancelButtonColor: '#d33',
@@ -262,47 +273,48 @@
 
                 $('.btn-modal').click(function(e) {
                     e.preventDefault();
-                    switch ($('form').attr('name')) {
-                        case 'insert':
-                            console.log('insert');
-                            break;
-                        case 'update':
-                            $.ajax({
-                                url: $('form').attr('action'),
-                                data: $('form').serialize(),
-                                dataType: "json",
-                                type: 'post',
-                                success: function(data) {
-                                    if (data.status == 'success') {
-                                        $('#modalAdd').modal('hide');
-                                        $('#dataTable').DataTable().destroy();
-                                        fetchConsultants();
-                                        Swal.fire(
-                                            'Updated!',
-                                            'The data has been updated',
-                                            'success'
-                                        );
-                                    } else {
-                                        $.each(data, function(key, value) {
-                                            if (value) {
-                                                $('.' + key).addClass('is-invalid');
-                                                $('.' + key).parents('.form-group').find('#error-'+key).html(value);
-                                                $('.' + key).on('keyup', function () { 
-                                                    $('.' + key).removeClass('is-invalid');
-                                                    $('.' + key).parents('.form-group').find('#error-' + key).html(" ");
-                                                });
-                                            }
+                    $.ajax({
+                        url: $('form').attr('action'),
+                        data: $('form').serialize(),
+                        dataType: "json",
+                        type: 'post',
+                        success: function(data,res) {
+                            if (data.status == 'success') {
+                                $('#modalAdd').modal('hide');
+                                $('#dataTable').DataTable().destroy();
+                                fetchConsultants();
+                                Swal.fire(
+                                    $('form').attr('name') == 'update' ? 'Updated!' : 'Success!',
+                                    $('form').attr('name') == 'update' ? 'The data has been updated' : 'Successfully insert consultant!',
+                                    'success'
+                                );
+                            } else {
+                                Swal.fire(
+                                    'Error!',
+                                    "Oops, something wasn't right!",
+                                    'error'
+                                );
+                                $.each(data, function(key, value) {
+                                    if (value) {
+                                        $('.' + key).addClass('is-invalid');
+                                        $('.' + key).parents('.form-group').find('#error-'+key).html(value);
+                                        $('.' + key).on('keyup', function () {
+                                            $('.' + key).removeClass('is-invalid');
+                                            $('.' + key).parents('.form-group').find('#error-' + key).html(" ");
+                                        });
+                                        $('.gender').click(function() {
+                                            $('.gender').removeClass('is-invalid');
+                                            $('.gender').parents('.form-group').find('#error-' + key).html(" ");
                                         });
                                     }
-                                }
-                            });
-                            break;
-                        default:
-                            break;
-                    }
+                                });
+                            }
+                        }
+                    });
                 })
                 $('#modalAdd').on('show.bs.modal',function() {
                     $('.form-control').removeClass('is-invalid');
+                    $('.gender').removeClass('is-invalid');
                     $('.errormess').html('');
                 });
             })

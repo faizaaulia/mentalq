@@ -1,0 +1,86 @@
+*{
+    font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+.nav-item{
+    margin-left: 40px;
+}
+    
+.nav-link{
+    color: black;
+    font-weight: bold;
+}
+    
+.profile{
+    color: #239A94;
+    margin-right: 30px;
+}
+
+.kotakprofile{
+    width: 800px;
+	margin: 10px auto;
+    padding: 60px 20px;
+    background-color: #F8F8F8;
+}
+
+.col-md-4 img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.col-md-8{
+    color: #A1A1A1;
+}
+
+.namapasien{
+    color: black;
+    font-weight: bold;
+}
+
+form{
+    margin-left: 925px;
+}
+
+.btn{
+    border-radius: 20px;
+    background: #239A94;
+    font-weight: bold;
+}
+
+.consultset{
+    margin-top: 50px;
+}
+
+.tulisanconsult{
+    margin-left: 360px;
+}
+
+.tulisanconsult h3{
+    font-weight: bold;
+}
+
+.kotakconsult{
+    width: 800px;
+    height: 190px;
+	margin: 10px auto;
+    padding: 20px 20px;
+    background-color: #F8F8F8;
+}
+
+.kotakconsult .dokter{
+    color: #239a94;    
+}
+
+/* .isikotak{
+    margin-bottom: 20px;
+} */
+
+.row .status{
+    color: #239A94;
+}
