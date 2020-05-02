@@ -8,6 +8,16 @@ class Consultant extends CI_Controller {
 		$this->load->model('Consultant_model');
     }
     
+    public function index()
+    {
+        if ($this->session->userdata('logged_in')) {
+            $data['main_view'] = 'home_view';
+            $data['profile'] = $this->Consultant_model->getDataConsultant();
+            $this->load->view('template_view',$data);
+        } else
+            redirect('home');
+    }
+
 	public function Consultant() {
 	    if ($this->session->userdata('logged_in')) {
             $data['consultants'] = $this->Consultant_model->getDataConsultants();

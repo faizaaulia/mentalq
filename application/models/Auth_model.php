@@ -18,7 +18,7 @@ class Auth_model extends CI_Model {
 
         if ($admin->num_rows() > 0 || $consultants->num_rows() > 0 || $patients->num_rows() > 0) {
             $data = array(
-                'email' => $email,
+                // 'email' => $email,
                 'logged_in' => TRUE,
             );
             if ($admin->num_rows() > 0) {
@@ -40,8 +40,30 @@ class Auth_model extends CI_Model {
         }
     }
 
-    public function getUser($email,$role) {
-        return $this->db->where('email',$email)
-                        ->get($role)->row();
+    public function register() {
+        $name = $this->input->post('name');
+        $gender = $this->input->post('gender');
+        $address = $this->input->post('address');
+        $phone = $this->input->post('phone');
+        $age = $this->input->post('age');
+        $email = $this->input->post('email-regist');
+        $password = $this->input->post('password-regist');
+
+        $data = array(
+            'namaPasien' => $name,
+            'email' => $email,
+            'password' => $password,
+            'gender' => $gender,
+            'alamat' => $address,
+            'noHP' => $phone,
+            'umur' => $age
+        );
+
+        $this->db->insert('patients',$data);
+
+        if ($this->db->affected_rows() > 0)
+            return true;
+        else
+            return false;
     }
 }

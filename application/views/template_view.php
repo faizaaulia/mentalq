@@ -26,22 +26,25 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
+			<?php 
+				$logged_in = $this->session->userdata('logged_in'); 
+				$role = $this->session->userdata('role');
+			?>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Consult <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="<?= $role == 'consultants' ? 'consultant/replyConsult' : 'patient/consultpatient' ?>">Consult <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Consultant <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="<?= $role == 'consultants' ? 'consultant/consultant' : 'patient/consultant' ?>">Consultant <span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
 			<span class="navbar-text">
-				<?php $logged_in = $this->session->userdata('logged_in'); ?>
-				<a class="nav-link <?= $logged_in ? '' : 'modal-login' ?>" href="#"><?= $logged_in ? 'Nama' : 'Login' ?>
+				<a class="nav-link <?= $logged_in ? '' : 'modal-login' ?>" href="<?=$logged_in ? ($role == 'consultants' ? 'consultant/updateprofile' : 'patient/showprofile') : '#' ?>"><?= $logged_in ? ($role == 'consultants' ? $profile->namaConsultant : $profile->namaPasien) : 'Login' ?>
 					<span class="sr-only">(current)</span>
 				</a>
 			</span>
 			<span>
-				<a class="nav-link login" href="<?= $this->session->userdata('logged_in') ? base_url('home/logout') : '' ?>"><?= $this->session->userdata('logged_in') ? 'Logout' : 'Register' ?> 
+				<a class="nav-link login <?= $logged_in ? 'modal-logout' : 'modal-regist' ?>" href="<?= $logged_in ? base_url('home/logout') : '#' ?>"><?= $this->session->userdata('logged_in') ? 'Logout' : 'Register' ?> 
 					<span class="sr-only">(current)</span>
 				</a>
 			</span>
@@ -99,7 +102,7 @@
 		</div>
 	</div>
 
-	<!-- Modal -->
+	<!-- Modal Login -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -110,7 +113,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="post">
+					<form action="<?= base_url('home/login') ?>" method="post">
 						<div class="form-group">
 							<label class="email">Email</label>
 							<input type="text" class="form-control email" name="email" placeholder="Email">
@@ -131,24 +134,125 @@
 		</div>
 	</div>
 
+	<!-- Modal Register -->
+	<div class="modal fade" id="modalRegist" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" style="font-weight: 600;">Register</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="<?= base_url('home/register') ?>" method="post">
+						<div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control name" name="name" placeholder="Name">
+                            <div id="error-name" class="errormess"></div>
+                    	</div>
+                        <div class="form-group">
+                        	<label>Gender</label>
+                            <div class="radio-container custom-control custom-control-inline">
+                            	<div class="custom-control custom-radio custom-control-inline">
+                                	<input type="radio" class="custom-control-input gender" name="gender" id="male" value="male">
+                                    <label class="custom-control-label" for="male">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input gender" name="gender" id="female" value="female">
+                                    <label class="custom-control-label" for="female">Female</label>
+                            	</div>
+                        	</div>
+							<div id="error-gender" class="errormess"></div>
+						</div>
+						<div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control address" name="address" placeholder="Address">
+                            <div id="error-address" class="errormess"></div>
+                    	</div>
+						<div class="form-group">
+                            <label>Phone Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">+62</span>
+                                </div>
+                                <input type="number" class="form-control phone" name="phone" placeholder="Phone Number">
+        						</div>
+                            <div id="error-phone" class="errormess"></div>
+						</div>
+						<div class="form-group">
+							<label>Age</label>
+							<input type="number" class="form-control age" name="age" placeholder="Age">
+                            <div id="error-age" class="errormess"></div>
+                        </div>
+						<div class="form-group">
+							<label class="email">Email</label>
+							<input type="text" class="form-control email" name="email-regist" placeholder="Email">
+							<div id="error-email" class="errormess"></div>
+						</div>
+						<div class="form-group">
+							<label class="password">Password</label>
+							<input type="password" class="form-control password" name="password-regist" placeholder="Password">
+							<div id="error-password" class="errormess"></div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<input type="submit" class="btn btn-login btn-modal" value="Register">
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<script>
 		$(document).ready(function () {
 			$('.modal-login').click(function () {
 				$('#modalLogin').modal('show');
 			});
 
+			$('.modal-logout').click(function(e) {
+				e.preventDefault();
+				Swal.fire({
+                    title: 'Logging Out',
+                    text: 'Are you sure you want to logout?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+					if (result.value)
+						window.location.replace('<?= base_url('home/logout') ?>');
+				});
+			});
+
+			$('.modal-regist').click(function(e) {
+				e.preventDefault();
+				$('#modalRegist').modal('show');
+			});
+
 			$('form').on('submit', function (e) {
 				e.preventDefault();
+				const URL = this.action;
 				$.ajax({
-					url: '<?= base_url('home/login') ?>',
+					url: URL,
 					data: $('form').serialize(),
 					type: 'post',
 					dataType: 'json',
 					success: function (data) {
 						switch (data.status) {
-							case 'success':
+							case 'success-login':
 								window.location = '<?= base_url('home') ?>';
 								break;
+							case 'success-regist':
+								Swal.fire(
+                                    'Success!',
+                                    'Register succeed!',
+                                    'success'
+                                );
+								$('#modalRegist').modal('hide');
+								$('#modalLogin').modal('show');
+							break;
 							case 'error':
 								Swal.fire({
 									title: 'Log In Error!',
@@ -157,6 +261,12 @@
 								})
 								break;
 							case 'validation_error':
+								var loginModal = $('#modalLogin').hasClass('show');
+								Swal.fire({
+									title: loginModal ? 'Log In Error!' : 'Register Error!',
+									text: "Something went wrong!",
+									icon: 'error',
+								})
 								$.each(data, function (key, value) {
 									if (value) {
 										$('.' + key).addClass('is-invalid');
@@ -165,6 +275,10 @@
 											$('.' + key).removeClass('is-invalid');
 											$('.' + key).parents('.form-group').find('#error-' + key).html(" ");
 										});
+										$('.gender').click(function() {
+                                            $('.gender').removeClass('is-invalid');
+                                            $('.gender').parents('.form-group').find('#error-' + key).html(" ");
+                                        });
 									}
 								});
 								break;
@@ -175,13 +289,27 @@
 				});
 			})
 
-			$('#modalLogin').on('show.bs.modal', function () {
+			$('.modal').on('show.bs.modal', function () {
 				$('.form-control').removeClass('is-invalid');
 				$('.errormess').html('');
 			});
 		});
 
 	</script>
+	<style>
+		/* remove input type number arrow */
+        /* Chrome, Safari, Edge, Opera */
+		::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        	-webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        	input[type=number] {
+            -moz-appearance: textfield;
+        }
+	</style>
 </body>
 
 </html>

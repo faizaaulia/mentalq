@@ -1,4 +1,3 @@
-
 <?php
 class Consultant_model extends CI_Model{
 	public function getDataConsultants() {
