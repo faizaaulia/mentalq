@@ -25,14 +25,14 @@
                   <a class="nav-link" href="<?= base_url('Patient/ConsultPatient')?>">Consult <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url('patient/Consultant')?>">Consultant <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?= base_url('Patient/Consultant')?>">Consultant <span class="sr-only">(current)</span></a>
                 </li>
               </ul>
               <span class="navbar-text">
-                <a class="nav-link profile" href="#">Nama <span class="sr-only">(current)</span></a>
+                <a class="nav-link profile" href="<?= base_url('Patient/showProfile')?>">Nama <span class="sr-only">(current)</span></a>
               </span>
               <span>
-                <a class="nav-link login" href="#">LogOut <span class="sr-only">(current)</span></a>
+                <a class="nav-link login" href="<?= base_url('Home/logout')?>">LogOut <span class="sr-only">(current)</span></a>
               </span>
             </div>
         </nav>
