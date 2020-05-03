@@ -50,10 +50,6 @@
 	</nav>
 
 	<div class="listconsultant">List of Consultants</div>
-        <!-- Search form -->
-        <br>
-        <input class="form-control active-cyan-4" type="text" placeholder="Search your consultant . . ." aria-label="Search" style="width:300px; margin: auto; text-align: center;">
-        <br>
         <hr>
      <div class="container mt-4">
             <?php foreach ($consultants as $consultant): ?>
