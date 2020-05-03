@@ -10,17 +10,19 @@ a:hover{
   color: #239A94;
 }
 .navbar-brand{
-  margin:10px;
+    margin:10px;
 }
 .nav-item{
-  margin-left: 40px;
-}
+    margin-left: 40px;
+  }
+    
+  .nav-link{
+    color: #3b3b3b;
+  }
   
-.nav-link{
-  color: black;
-  margin : 10px;
-  font-weight: 500;
-}
+  .nav-link:hover{
+    color: #009492;
+  }
   
 .profile{
   margin-right: 30px;
@@ -44,15 +46,28 @@ a:hover{
   color : #239A94;
 }
 
-.tombol_set{
-  margin-top : 10px;
-  margin-left : 520px;
-	background: #239A94;
-	color: white;
-	font-size: 11pt;
-	width: 30%;
-	border: none;
-	border-radius: 20px;
-	padding: 10px 20px;
+.replypatient{
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: #3b3b3b;
 }
 
+.replypatient-caption{
+  text-align: center;
+  font-size: 15px;
+  color: #bcbcbc;
+}
+
+.btn.btn-set {
+  background-color: #009492;
+  width: 20%;
+  color: white;
+  float: right;
+  margin-top:15px;
+}
+
+.btn.btn-set:hover {
+  background-color: #00cecb;
+  color: white;
+}

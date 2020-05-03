@@ -1,27 +1,22 @@
 *{
-    font-family: 'Open Sans';
-  }
+  font-family: 'Open Sans';
+}
+
+body{
+  background-size: cover;
+}
+
+.nav-item{
+  margin-left: 40px;
+}
   
-  body{
-      background: url("assets/BG ABU.jpg") no-repeat fixed center ;
-      background-size: cover;
-  }
-  
-  a:hover{
-    color: #239A94;
-  }
-  .navbar-brand{
-    margin:10px;
-  }
-  .nav-item{
-    margin-left: 40px;
-  }
-    
-  .nav-link{
-    color: black;
-    margin : 10px;
-    font-weight: 500;
-  }
+.nav-link{
+  color: #3b3b3b;
+}
+
+.nav-link:hover{
+  color: #009492;
+}
     
   .profile{
     margin-right: 30px;
@@ -54,19 +49,18 @@
 }
 
 
-.btn{
-    border-radius: 20px;
-    background: #239A94;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-top : 20px;
-    margin-left : 410px;
-    border:none;
-    font-weight: bold;
+.btn.btn-set {
+  background-color: #009492;
+  width: 30%;
+  color: white;
+  float: right;
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
 
-.btn:hover{
-    background: #A1A1A1;
+.btn.btn-set:hover {
+  background-color: #00cecb;
+  color: white;
 }
 
 .custom-file{
@@ -90,4 +84,11 @@
 	border-radius: 20px;
     border: none;
     margin-bottom: 10px;
+}
+
+.patientcard{
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: #3b3b3b;
 }

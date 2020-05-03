@@ -21,6 +21,7 @@ class Patient extends CI_Controller {
 
 	public function consultPatient() {
 		if ($this->session->userdata('logged_in')) {
+			$data['profile'] = $this->Patient_model->getProfilePatient();
 			$data['consultants'] = $this->Consultant_model->getDataConsultants();
 			$this->load->view('ConsultPasien', $data);
 		} else
@@ -33,7 +34,8 @@ class Patient extends CI_Controller {
 
 	public function Consultant() {
 	    if ($this->session->userdata('logged_in')) {
-            $data['consultants'] = $this->Consultant_model->getDataConsultants();
+			$data['consultants'] = $this->Consultant_model->getDataConsultants();
+			$data['profile'] = $this->Patient_model->getProfilePatient();
 		    $this->load->view('Consultant', $data);
         } else
             redirect('home');
@@ -42,6 +44,7 @@ class Patient extends CI_Controller {
 	public function showProfile() {
 		$data['patients'] = $this->Patient_model->getProfilePatient();
 		$data['consult'] = $this->Patient_model->getConsult();
+		$data['profile'] = $this->Patient_model->getProfilePatient();
 		$this->load->view('ProfilePasien', $data);
 	}
 

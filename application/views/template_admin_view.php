@@ -26,7 +26,7 @@
     <div class="d-flex" id="wrapper">
         <!-- sidebar-wrapper -->
         <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading list-group-flush"><img src="<?= base_url('assets/LOGO KECIL MENTALQ.png') ?>" width="80%"></div>
+            <div class="sidebar-heading list-group-flush"><img src="<?= base_url('assets/img/LOGO KECIL MENTALQ.png')?>" width="80%"></div>
             <div class="list-group list-group-flush">
                 <a href="<?= base_url('admin') ?>" class="list-group-item list-group-item-action <?= $this->uri->segment(2) ? '' : 'active_tab' ?>" style="background-color: #f1f1f1;">Consultants</a>
                 <a href="<?= base_url('admin/patients') ?>" class="list-group-item list-group-item-action <?= $this->uri->segment(2) == 'patients' ? 'active_tab' : '' ?>" style="background-color: #f1f1f1;">Patients</a>
