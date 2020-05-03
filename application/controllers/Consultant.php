@@ -84,20 +84,20 @@ class Consultant extends CI_Controller {
                 $this->load->library('upload',$config);
                 if($this->upload->do_upload('photo')){
                     if($this->Consultant_model->setUpdateProfile($this->upload->data()))
-                        $this->session->set_flashdata('notifsukses','Berhasil mengubah profil foto');
+                        $this->session->set_flashdata('notifsukses','Successfully update profile');
                     else
-                        $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+                        $this->session->set_flashdata('notiferror','Update profile error');
                 }else
                     $this->session->set_flashdata('notiferror',$this->upload->display_errors());
             } else {
                 $photo = $this->Consultant_model->getProfileConsultant()->photo;
                 if($this->Consultant_model->setUpdateProfile($photo))
-                    $this->session->set_flashdata('notifsukses','Berhasil mengubah profil ga');
+                    $this->session->set_flashdata('notifsukses','Successfully update profile');
                 else
-                    $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+                    $this->session->set_flashdata('notiferror','Update profile error');
             }
         } else 
-            $this->session->set_flashdata('notiferror','Lengkapi semua field');
+            $this->session->set_flashdata('notiferror','Update profile error');
         redirect('Consultant/showprofile');
     }
     
