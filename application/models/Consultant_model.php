@@ -11,20 +11,22 @@ class Consultant_model extends CI_Model{
     }
     
     // Mengeset Profil yang sudah diisi di form Edit Profil
-    public function setUpdateProfile(){
+    public function setUpdateProfile($photo){
         $STR = $this->session->userdata('id');
+        $oldphoto = $this->getProfileConsultant()->photo;
+        $newfoto = $_FILES['photo']['name'];
         $data=array (
             //'nama_kolom' => $this->input->post('name_inputan'),
-            'photo' => $this->input->post('photo'),
             'jenisPsikologi' => $this->input->post('jenisPsikologi'),
             'lamaPsikologi' => $this->input->post('lamaPsikologi'),
+            'photo' => $newfoto ? $photo['file_name'] : $oldphoto,
             'tempatPraktik' => $this->input->post('tempatPraktik'),
             'email' => $this->input->post('email'),
             'noHP' => $this->input->post('noHP'),
             'jamKerja' => $this->input->post('jamKerja'),
             'schedule' => $this->input->post('schedule'),
         );
-        $this->db->where('noSTR',$STR)->update('consultants', $data);
+        return $this->db->where('noSTR',$STR)->update('consultants', $data);
     }
     
     // Mendapat Keluhan dari Consults

@@ -65,7 +65,7 @@
           <?php endforeach ?>
         </select>
         <br>
-        <input type="submit" class="button <?='modal-set'?>" value="Set" >
+        <input type="submit" class="btn btn-set" value="Send" >
         </form>
         
 

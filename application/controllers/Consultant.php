@@ -56,6 +56,7 @@ class Consultant extends CI_Controller {
     // Mengeset Profil yang sudah diisi di form Edit Profil
     public function setReplyConsults() {
         $this->Consultant_model->setReplyConsults();
+        redirect('Consultant/replyconsult');
     }
         
     // Mendapat Profil dari Consultant
@@ -69,7 +70,36 @@ class Consultant extends CI_Controller {
         
     // Mengeset Profil yang sudah diisi di form Edit Profil
     public function setUpdateProfile() {
-        $this->Consultant_model->setUpdateProfile();
+        $this->form_validation->set_rules('jenisPsikologi','Consultant Type','required');
+        $this->form_validation->set_rules('lamaPsikologi','Year Experience','required');
+        $this->form_validation->set_rules('tempatPraktik','Work Place','required');
+        $this->form_validation->set_rules('email','Email','required|valid_email');
+        $this->form_validation->set_rules('noHP','Phone Number','required');
+        $this->form_validation->set_rules('jamKerja','Work Hours','required');
+        $this->form_validation->set_rules('schedule','Schedule Date','required');
+
+        if ($this->form_validation->run()){
+            if($_FILES['photo']['name']){
+                $config['upload_path'] = './assets/img/Consultants/';
+                $config['allowed_types'] = 'jpg|png';
+                $this->load->library('upload',$config);
+                if($this->upload->do_upload('photo')){
+                    if($this->Consultant_model->setUpdateProfile($this->upload->data()))
+                        $this->session->set_flashdata('notifsukses','Berhasil mengubah profil foto');
+                    else
+                        $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+                }else
+                    $this->session->set_flashdata('notiferror',$this->upload->display_errors());
+            } else {
+                $photo = $this->Consultant_model->getProfileConsultant()->photo;
+                if($this->Consultant_model->setUpdateProfile($photo))
+                    $this->session->set_flashdata('notifsukses','Berhasil mengubah profil ga');
+                else
+                    $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+            }
+        } else 
+            $this->session->set_flashdata('notiferror','Lengkapi semua field');
+        redirect('Consultant/showprofile');
     }
     
 }

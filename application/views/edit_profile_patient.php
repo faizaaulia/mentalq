@@ -52,6 +52,15 @@
      <div class="patientcard">Edit Profile</div>
      <hr>
     <div class="kotakprofile">
+		<?php
+			$notifsukses = $this->session->flashdata('notifsukses');
+			$notiferror = $this->session->flashdata('notiferror');
+
+			if (!empty($notifsukses)) 
+				echo "<div class='alert alert-success'>$notifsukses</div>";
+			if (!empty($notiferror)) 
+				echo "<div class='alert alert-danger'>$notiferror</div>";
+		?>
         <form action="<?=base_url('Patient/setUpdateProfile')?>" method=POST>
         <div class="row">
             <div class="col-md-4">
