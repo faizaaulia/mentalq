@@ -1,0 +1,101 @@
+*{
+  font-family: 'Open Sans';
+}
+
+body{
+  background-size: cover;
+}
+
+.nav-item{
+  margin-left: 40px;
+}
+  
+.nav-link{
+  color: #3b3b3b;
+}
+
+.nav-link:hover{
+  color: #009492;
+}
+.photoprofile{
+  border-radius: 10px;
+  width:20%;
+}
+  .profile{
+    margin-right: 30px;
+    color: #239A94;
+    font-weight: bold;
+  }
+ 
+.kotaktext{
+    font-size: 15px;
+    margin:5px;
+}
+
+
+ 
+
+/*  */
+
+.kotakprofile{
+    width: 800px;
+    margin: 10px auto;
+    padding: 60px 20px;
+    background-color: #F8F8F8;
+    }
+    
+    .col-md-4 img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+    
+    .col-md-8{
+    color: #A1A1A1;
+    }
+    
+    .namaconsultant{
+    color: black;
+    font-weight: bold;
+    }
+    
+
+    .textcard{
+      font-size: 14x;
+      color: #3b3b3b;
+  }
+  
+  .kontencard{
+      font-size: 20px;
+      color: #bcbcbc;
+  }
+
+    .card{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+  }
+  
+  .patientcard{
+      text-align: center;
+      font-weight: bold;
+      font-size: 25px;
+      color: #3b3b3b;
+  }
+
+  .btn.btn-set {
+    background-color: #009492;
+    width: 30%;
+    color: white;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  .btn.btn-set:hover {
+    background-color: #00cecb;
+    color: white;
+  }
+  

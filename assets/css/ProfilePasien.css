@@ -1,0 +1,118 @@
+*{
+    font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+.nav-item{
+    margin-left: 40px;
+}
+    
+.nav-link{
+    color: #3b3b3b;
+}
+
+.nav-link:hover{
+    color: #009492;
+}
+.photoprofile{
+    border-radius: 10px;
+    width:20%;
+}
+.profile{
+    color: #239A94;
+    margin-right: 30px;
+}
+
+.card{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.patientcard{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    color: #3b3b3b;
+}
+
+
+.textcard{
+    font-size: 14x;
+    color: #3b3b3b;
+}
+
+.kontencard{
+    font-size: 20px;
+    color: #bcbcbc;
+}
+
+.col-md-4 img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.col-md-8{
+    color: #A1A1A1;
+}
+
+.namapasien{
+    color: black;
+    font-weight: bold;
+}
+
+.btn.btn-set {
+    background-color: #009492;
+    width: 30%;
+    color: white;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  .btn.btn-set:hover {
+    background-color: #00cecb;
+    color: white;
+  }
+
+.consultset{
+    margin-top: 50px;
+}
+
+.tulisanconsult{
+    margin-left: 360px;
+}
+
+.tulisanconsult h3{
+    font-weight: bold;
+}
+
+.kotakconsult{
+    width: 800px;
+    height: 190px;
+	margin: 10px auto;
+    padding: 20px 20px;
+    background-color: #F8F8F8;
+}
+
+.dokter{
+    color: #239a94;    
+}
+
+.isikotak{
+    padding:20px;
+}
+
+/* .isikotak{
+    margin-bottom: 20px;
+} */
+
+.row .status{
+    color: #239A94;
+}

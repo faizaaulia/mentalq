@@ -1,0 +1,104 @@
+*{
+    font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+.nav-item{
+    margin-left: 40px;
+}
+    
+.nav-link{
+    color: #3b3b3b;
+}
+
+.nav-link:hover{
+    color: #009492;
+}
+    
+    
+    .profile{
+    margin-right: 30px;
+    }
+    .button {
+        background-color: #169c9b;
+        font-family: 'Open Sans';
+        font-size: 16px;
+        border: none;
+        color: white;
+        padding: 8px 45px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 50px;
+        margin-left: 893px;
+        cursor: pointer;
+        border-radius: 90px;
+    }
+    
+    .button:hover{
+        background-color: #454545;
+    }
+    .button:active {
+        transform: translateY(4px);
+    }
+
+    body {
+        /* background-image: url(<?= base_url('assets/img/BG ABU.jpg')?>); */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    textarea {
+        color: #3b3b3b;
+        text-decoration: none;
+        display: block;    
+        margin-left: auto;
+        margin-right: auto;
+        width:70%;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+    h1{
+        color: #169c9b;
+        font-family: 'Open Sans';
+        font-size: 28px;
+        margin-top: 40px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .p1{
+        color: #169c9b;
+        text-align: center  ;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 13px;
+    }
+
+    select{
+        color: #169c9b;
+        font-family: 'Open Sans';
+        font-size: 16px;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    .setconsult{
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        color: #3b3b3b;
+      }
+      
+      .setconsult-caption{
+        text-align: center;
+        font-size: 15px;
+        color: #bcbcbc;
+      }

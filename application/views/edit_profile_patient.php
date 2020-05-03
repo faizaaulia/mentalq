@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" href="<?= base_url('assets/css/edit_profile_consultant.css')?>">
+	<link rel="stylesheet" href="<?= base_url('assets/css/edit_profile_patient.css')?>">
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.js" crossorigin="anonymous"> </script>
 	<!-- Bootstrap -->
@@ -51,68 +51,44 @@
 	</nav>
      <div class="patientcard">Edit Profile</div>
      <hr>
-
     <div class="kotakprofile">
-		<?php
-			$notifsukses = $this->session->flashdata('notifsukses');
-			$notiferror = $this->session->flashdata('notiferror');
-
-			if (!empty($notifsukses)) 
-				echo "<div class='alert alert-success'>$notifsukses</div>";
-			if (!empty($notiferror)) 
-				echo "<div class='alert alert-danger'>$notiferror</div>";
-		?>
-        <form action="<?=base_url('Consultant/setUpdateProfile')?>" method="POST" enctype='multipart/form-data'>
+        <form action="<?=base_url('Patient/setUpdateProfile')?>" method=POST>
         <div class="row">
             <div class="col-md-4">
-
-              <?php if($profile->photo==''){?>
-                <img src="<?=base_url('assets/img/CONSULTANT-ICON.png')?>" width:200px alt="">
+            <?php if($profile->photo==''){?>
+                <img src="<?=base_url('assets/img/PATIENT-ICON.png')?>" width:200px alt="">
               <?php }else{ ?>
-                <img class="photoprofile" src="<?=base_url('assets/img/Consultants/').$profile->photo?>" width:200px alt="">
+                <img class="photoprofile" src="<?=base_url('assets/img/Patients/').$profile->photo?>" width:200px>
               <?php }?>
-			  <div class="custom-file">
+                <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile" name="photo">
                     <label class="custom-file-label" for="customFile">Update Photo</label>
                   </div>
-
             </div>
             <div class="col-md-8">
-                <p class="namaconsultant"><?=$profile->namaConsultant ?></p>
+                <p class="namapatient"><?=$profile->namaPasien ?></p>
                 <hr>
-                <p class="kotaktext">Consultant Type</p>
-                <input type="text" name="jenisPsikologi" class="form_edit_profile_consultant" value="<?=$profile->jenisPsikologi ?>"> 
-                <br>
-                <p class="kotaktext">Year Experience</p>
-                <input type="text" name="lamaPsikologi" class="form_edit_profile_consultant" value="<?=$profile->lamaPsikologi ?>">
-                <p class="kotaktext">Work Place</p>
-                <input type="text" name="tempatPraktik" class="form_edit_profile_consultant" value="<?=$profile->tempatPraktik ?>">
                 <p class="kotaktext">Email</p>
-                <input type="text" name="email" class="form_edit_profile_consultant" value="<?=$profile->email ?>">
+                <input type="text" name="email" class="form_edit_profile_patient" placeholder=" " value ="<?=$profile->email ?>">
+                <br>
+                <p class="kotaktext">Addres</p>
+                <input type="text" name="alamat" class="form_edit_profile_patient" placeholder="" value="<?=$profile->alamat?>"> 
                 <p class="kotaktext">Phone Number</p>
-                <input type="text" name="noHP" class="form_edit_profile_consultant" value="<?=$profile->noHP ?>">
-                <p class="kotaktext">Work Hours</p>
-                <input type="text" name="jamKerja" class="form_edit_profile_consultant" value="<?=$profile->jamKerja ?>">
-                <p class="kotaktext">Schedule Date</p>
-                <input type="date" name="schedule" class="form_edit_profile_consultant" value="<?=$profile->schedule?>">
+                <input type="text" name="noHP" class="form_edit_profile_patient" placeholder=" " value="<?=$profile->noHP?>">
+                <p class="kotaktext">Age</p>
+                <input type="text" name="umur" class="form_edit_profile_patient" placeholder=" " value="<?=$profile->umur?>"> 
+                
+                <!-- <a class="btn btn-primary" href="#" role="button" value ="Save">Save</a> -->
                 <hr>
                 <input type="submit" class="btn btn-set" role="button" value="Save">
             </div>
         </div>
     </form>
     </div>
+    <br>
 
 
-
-  </body>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script>
+    <script>
 		$(document).ready(function () {    
 			$('.modal-logout').click(function(e) {
 				e.preventDefault();
@@ -150,6 +126,10 @@
             -moz-appearance: textfield;
         }
 	</style>
-
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
 </html>

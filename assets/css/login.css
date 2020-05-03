@@ -1,0 +1,86 @@
+*{
+	font-family: 'Open', sans-serif;
+}
+body{
+    background: url("assets/BG ABU.jpg") no-repeat fixed center ;
+    background-size: cover;
+}
+
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+/*  */
+.tulisan_login{
+	text-align: center;
+	color: #a1a1a1;
+}
+/*  */
+
+/*  */
+.kotak_login{
+	width: 350px;
+	margin: auto;
+	padding: 40px 0px;
+}
+/*  */
+.form_login{
+	box-sizing : border-box;
+	width: 100%;
+	text-indent: 10px;
+	padding: 10px;
+	font-size: 11pt;
+	margin: 10px;
+	border-radius: 20px;
+	border: none;
+}
+
+::placeholder {
+  color: #c5c5c5;
+}
+
+input[type=text]{
+	color : #a1a1a1;
+}
+
+.nav-item{
+	margin-left: 40px;
+}
+.nav-link{
+	color: black;
+	font-weight: bold;
+}
+.login{
+	color: #239A94;
+	margin-right: 30px;
+}
+
+form{
+	text-align: center;
+}
+/*  */
+.tombol_login{
+	margin : 10px;
+	background: #239A94;
+	color: white;
+	font-size: 11pt;
+	width: 30%;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+}
+/*  */
+
+p{
+    text-align: center;
+    color: #a1a1a1;
+    line-height: 10px;
+
+}
+
+a{
+    color: #008080;
+}
+ 

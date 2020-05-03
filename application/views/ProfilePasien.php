@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" href="<?= base_url('assets/css/edit_profile_consultant.css')?>">
+	<link rel="stylesheet" href="<?= base_url('assets/css/ProfilePasien.css')?>">
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.js" crossorigin="anonymous"> </script>
 	<!-- Bootstrap -->
@@ -15,7 +16,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
 	<!-- SweetAlert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<title>Edit Profile | mentalQ</title>
+	<title>Profile | mentalQ</title>
 </head>
 
   <body style="background-image: url('<?= base_url('assets/img/BG ABU.jpg')?>');">
@@ -34,7 +35,7 @@
 					<a class="nav-link" href="<?= $role == 'consultants' ? 'replyConsult' : 'consultpatient' ?>">Consult <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="<?= $role == 'consultants' ? 'consultant' : 'consultant' ?>">Consultant <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="<?= $role == 'consultants' ? 'cconsultant' : 'consultant' ?>">Consultant <span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
 			<span class="navbar-text">
@@ -49,70 +50,81 @@
 			</span>
 		</div>
 	</nav>
-     <div class="patientcard">Edit Profile</div>
+
+     <div class="card" style="width: 50rem;">
+     <br>
+     <div class="patientcard">Patient Profile</div>
      <hr>
-
-    <div class="kotakprofile">
-		<?php
-			$notifsukses = $this->session->flashdata('notifsukses');
-			$notiferror = $this->session->flashdata('notiferror');
-
-			if (!empty($notifsukses)) 
-				echo "<div class='alert alert-success'>$notifsukses</div>";
-			if (!empty($notiferror)) 
-				echo "<div class='alert alert-danger'>$notiferror</div>";
-		?>
-        <form action="<?=base_url('Consultant/setUpdateProfile')?>" method="POST" enctype='multipart/form-data'>
+     <br>
         <div class="row">
+
             <div class="col-md-4">
-
               <?php if($profile->photo==''){?>
-                <img src="<?=base_url('assets/img/CONSULTANT-ICON.png')?>" width:200px alt="">
+                <img src="<?=base_url('assets/img/PATIENT-ICON.png')?>" width:200px alt="">
               <?php }else{ ?>
-                <img class="photoprofile" src="<?=base_url('assets/img/Consultants/').$profile->photo?>" width:200px alt="">
+                <img class="photoprofile" src="<?=base_url('assets/img/Patients/').$profile->photo?>"  width:200px>
               <?php }?>
-			  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="photo">
-                    <label class="custom-file-label" for="customFile">Update Photo</label>
-                  </div>
-
             </div>
             <div class="col-md-8">
-                <p class="namaconsultant"><?=$profile->namaConsultant ?></p>
-                <hr>
-                <p class="kotaktext">Consultant Type</p>
-                <input type="text" name="jenisPsikologi" class="form_edit_profile_consultant" value="<?=$profile->jenisPsikologi ?>"> 
+                <!-- <h3 class="namapasien">Masruru Farud</h3> -->
+                <div class="textcard">Name</div>
+                <div class="kontencard"><?php echo $patients->namaPasien?> </h3></div>
                 <br>
-                <p class="kotaktext">Year Experience</p>
-                <input type="text" name="lamaPsikologi" class="form_edit_profile_consultant" value="<?=$profile->lamaPsikologi ?>">
-                <p class="kotaktext">Work Place</p>
-                <input type="text" name="tempatPraktik" class="form_edit_profile_consultant" value="<?=$profile->tempatPraktik ?>">
-                <p class="kotaktext">Email</p>
-                <input type="text" name="email" class="form_edit_profile_consultant" value="<?=$profile->email ?>">
-                <p class="kotaktext">Phone Number</p>
-                <input type="text" name="noHP" class="form_edit_profile_consultant" value="<?=$profile->noHP ?>">
-                <p class="kotaktext">Work Hours</p>
-                <input type="text" name="jamKerja" class="form_edit_profile_consultant" value="<?=$profile->jamKerja ?>">
-                <p class="kotaktext">Schedule Date</p>
-                <input type="date" name="schedule" class="form_edit_profile_consultant" value="<?=$profile->schedule?>">
+                <div class="textcard">Gender</div>
+                <div class="kontencard"><?php echo $patients->gender?> </h3></div>
+                <br>
+                <div class="textcard">Email</div>
+                <div class="kontencard"><?php echo $patients->email?> </h3></div>
+                <br>
+                <div class="textcard">Address</div>
+                <div class="kontencard"><?php echo $patients->alamat?> </h3></div>
+                <br>
+                <div class="textcard">Phone Number</div>
+                <div class="kontencard"><?php echo $patients->noHP?> </h3></div>
+                <br>
+                <div class="textcard">Age</div>
+                <div class="kontencard"><?php echo $patients->umur?> </h3></div>
                 <hr>
-                <input type="submit" class="btn btn-set" role="button" value="Save">
+                <form>
+                <a class="btn btn-set" href="updateprofile" role="button">Edit Profile</a>
+                </form>
+                
             </div>
         </div>
-    </form>
     </div>
-
-
-
-  </body>
-
+    <br>
+    <hr>
+    <section class="consultset">
+      <div class="patientcard">Consult History</div><br>
+        <?php foreach($consult->result() as $cs): ?>
+          <div class="card" style="width: 50rem;">
+            <div class="isikotak">
+                <h6>To</h6>
+                <h5 class="dokter"><?php echo $cs->namaConsultant?></h5><hr>
+                <h6><?php echo $cs->keluhan?></h5><hr>
+                <div class="container">
+                    <div class="row">
+                        <h6>Status : </h6>
+                        <h6 class="status"><?php echo $cs->status?></h6>    
+                    </div>  
+                <div class="row">
+                    <h6>Solusi :  </h6>
+                    <h6> <?php echo $cs->solusi?></h6>
+                </div>
+            </div>
+        </div>    
+        </div>
+        <br>
+        <?php endforeach ?>
+    </section>
+    <br>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script>
+    <script>
 		$(document).ready(function () {    
 			$('.modal-logout').click(function(e) {
 				e.preventDefault();
@@ -150,6 +162,5 @@
             -moz-appearance: textfield;
         }
 	</style>
-
-</body>
+  </body>
 </html>

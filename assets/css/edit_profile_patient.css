@@ -49,29 +49,6 @@ body{
 }
 
 
-.custom-file{
-    margin: 20px;
-    width: 200px;
-    font-size: 13px;
-}
-
-.namaconsultant{
-    font-size: 25px;
-    color: #239A94;
-    font-weight: bold;
-}
-
-.form_edit_profile_consultant{
-	box-sizing : border-box;
-	width: 100%;
-	text-indent: 10px;
-	padding: 10px;
-	font-size: 10pt;
-	border-radius: 20px;
-    border: none;
-    margin-bottom: 10px;
-}
-
 .btn.btn-set {
   background-color: #009492;
   width: 30%;
@@ -84,6 +61,29 @@ body{
 .btn.btn-set:hover {
   background-color: #00cecb;
   color: white;
+}
+
+.custom-file{
+    margin: 20px;
+    width: 200px;
+    font-size: 13px;
+}
+
+.namapatient{
+    font-size: 25px;
+    color: #239A94;
+    font-weight: bold;
+}
+
+.form_edit_profile_patient{
+	box-sizing : border-box;
+	width: 100%;
+	text-indent: 10px;
+	padding: 10px;
+	font-size: 10pt;
+	border-radius: 20px;
+    border: none;
+    margin-bottom: 10px;
 }
 
 .patientcard{
