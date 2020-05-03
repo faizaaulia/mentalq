@@ -49,34 +49,37 @@
 		</div>
 	</nav>
 
-	<div class="replypatient">Reply your Patient</div>
-	<div class="replypatient-caption">you have messages from your patients</div>
-	<hr>
-	<?php foreach ($consult as $consult->idPasien): ?>
-	<div class="card" style="width: 50rem;">
-		<div class="card-body">
-			<p class="card-text">From</p>
-			<p class="card-text name"><?=$consult->namaPasien ?></p>
-			<hr>
-			<p class="card-text"><?=$consult->keluhan ?></p>
-			<hr>
-
-			<!-- Form Set Reply Consults -->
-			<form action="<?=base_url('Consultant/setReplyConsults')?>" method=POST>
-				<label for="status">Status : </label>
-				<select id="status" name="status" value="<?=$consult->status ?>">
-					<option value="Belum Selesai" <?= ($consult->status == 'Belum Selesai') ? "selected" : "" ?>>Belum Selesai</option>
-					<option value="Selesai" <?= ($consult->status == 'Selesai') ? "selected" : "" ?>>Selesai</option>
-				</select>
+	<?php if (empty($consults)): ?>
+		<h1 style="text-align: center;">No Consults</h1>
+	<?php else: ?>
+		<div class="replypatient">Reply your Patient</div>
+		<div class="replypatient-caption">you have messages from your patients</div>
+		<hr>
+		<?php foreach ($consults as $consult): ?>
+		<div class="card" style="width: 50rem;">
+			<div class="card-body">
+				<p class="card-text">From</p>
+				<p class="card-text name"><?=$consult->namaPasien ?></p>
 				<hr>
-				<p class="card-text">Solusi</p>
-				<textarea id="solusi" rows="3" cols="92" name="solusi"><?=$consult->solusi?></textarea>
-				<input type="submit" class="btn btn-set" value="Set">
-			</form>
+				<p class="card-text"><?=$consult->keluhan ?></p>
+				<hr>
+
+				<!-- Form Set Reply Consults -->
+				<form action="<?=base_url('Consultant/setReplyConsults')?>" method=POST>
+					<label for="status">Status : </label>
+					<select id="status" name="status" value="<?=$consult->status ?>">
+						<option value="Belum Selesai" <?= ($consult->status == 'Belum Selesai') ? "selected" : "" ?>>Belum Selesai</option>
+						<option value="Selesai" <?= ($consult->status == 'Selesai') ? "selected" : "" ?>>Selesai</option>
+					</select>
+					<hr>
+					<p class="card-text">Solusi</p>
+					<textarea id="solusi" rows="3" cols="92" name="solusi"><?=$consult->solusi?></textarea>
+					<input type="submit" class="btn btn-set" value="Set">
+				</form>
+			</div>
 		</div>
-	</div>
-	<br>
-	<?php endforeach ?>
+		<?php endforeach ?>
+	<?php endif ?>
 	<script>
 		$(document).ready(function () {    
 			$('.modal-logout').click(function(e) {

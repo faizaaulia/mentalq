@@ -275,7 +275,7 @@
                         data: $('form').serialize(),
                         dataType: "json",
                         type: 'post',
-                        success: function(data,res) {
+                        success: function(data) {
                             if (data.status == 'success') {
                                 $('#modalAdd').modal('hide');
                                 $('#dataTable').DataTable().destroy();

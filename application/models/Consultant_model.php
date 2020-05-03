@@ -37,7 +37,7 @@ class Consultant_model extends CI_Model{
                  ->join('consultants', 'consultants.noSTR = consults.noSTR')
                  ->join('patients', 'patients.idPasien = consults.idPasien');
  
-        return $this->db->get()->row();
+        return $this->db->get()->result();
         // return $this->db->where('noSTR', $STR)->get('consults')->row();
     }
     

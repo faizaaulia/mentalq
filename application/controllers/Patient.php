@@ -13,8 +13,7 @@ class Patient extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in')) {
 			$data['profile'] = $this->Patient_model->getProfilePatient();
-			$data['main_view'] = 'home_view';
-			$this->load->view('template_view',$data);
+			$this->load->view('home_view',$data);
 		} else
 			redirect('home');
 	}	

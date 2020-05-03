@@ -57,15 +57,13 @@
         <p class="p1">Describe your Problem</p>
         <form id="consult" action="<?= base_url('Patient/inputKeluhan')?>" method='post'>
             <textarea rows="7" id="keluhan"name="keluhan" form="consult" style="margin-left: 220px"></textarea>
-        <br>
-        <p class="p1">Select your Consultant</p>
-        <select name="ConsultantList" style="margin-left: 425px">
-          <?php foreach ($consultants as $consultant): ?>
-            <option value="<?= $consultant->noSTR ?>"><?= $consultant->namaConsultant ?> ( <?= $consultant->jamKerja ?>, <?= $consultant->schedule ?>, <?= $consultant->tempatPraktik ?> )</option>
-          <?php endforeach ?>
-        </select>
-        <br>
-        <input type="submit" class="button <?='modal-set'?>" value="Set" >
+			<p class="p1">Select your Consultant</p>
+			<select name="ConsultantList" style="margin: auto; display: block">
+			<?php foreach ($consultants as $consultant): ?>
+				<option value="<?= $consultant->noSTR ?>"><?= $consultant->namaConsultant ?> ( <?= $consultant->jamKerja ?>, <?= $consultant->schedule ?>, <?= $consultant->tempatPraktik ?> )</option>
+			<?php endforeach ?>
+			</select>
+        	<input type="submit" class="button <?='modal-set'?>" value="Set" >
         </form>
         
 

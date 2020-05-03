@@ -16,18 +16,16 @@ class Home extends CI_Controller{
                     redirect('admin');
                     break;
                 case 'consultants':
-                    redirect('consultant');
+                    redirect('consultant/replyconsult');
                     break;
                 case 'patients':
-                    redirect('patient');
+                    redirect('patient/consultpatient');
                     break;
                 default:
                     break;
             }
-        } else {
-            $data['main_view'] = 'home_view';
-            $this->load->view('template_view',$data); 
-        }
+        } else
+            $this->load->view('home_view'); 
     }
 
     public function login() {

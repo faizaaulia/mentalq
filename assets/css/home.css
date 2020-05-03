@@ -38,15 +38,6 @@ body{
     margin-top: 40px;
 }
 
-.tulisan h4{
-    font-style: italic;
-}
-
-.trendingtopic h4{
-    text-align: center;
-    margin-top: 50px;
-}
-
 .card{
     margin: 10px auto;
     padding: 60px 20px;
@@ -60,10 +51,9 @@ body{
 
 .modal-body{
     color: #009492;
-    style="background-image: url('<?= base_url('assets/img/BG PUTIH.jpg')?>');"
 }
 
-p{
+.tulisan {
     font-size: 20px;
     font-style: italic;
     color: #3b3b3b;
