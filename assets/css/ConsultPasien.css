@@ -102,3 +102,18 @@ body{
         font-size: 15px;
         color: #bcbcbc;
       }
+
+      .btn.btn-set {
+        background-color: #009492;
+        width: 20%;
+        color: white;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top:15px;
+      }
+      
+      .btn.btn-set:hover {
+        background-color: #00cecb;
+        color: white;
+      }

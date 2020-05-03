@@ -29,6 +29,7 @@ class Patient extends CI_Controller {
 
 	public function inputKeluhan() {
 		$this->Patient_model->insertKeluhan();
+		redirect('Patient/consultpatient');
 	}
 
 	public function Consultant() {
@@ -53,7 +54,35 @@ class Patient extends CI_Controller {
 	}
 
 	public function setUpdateProfile() {
-		$this->Patient_model->ubahDataPasien();
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('alamat','Address','required');
+		$this->form_validation->set_rules('noHP','Phone Number','required');
+		$this->form_validation->set_rules('umur','Age','required');
+
+
+		if ($this->form_validation->run()){
+            if($_FILES['photo']['name']){
+                $config['upload_path'] = './assets/img/Patients/';
+                $config['allowed_types'] = 'jpg|png';
+                $this->load->library('upload',$config);
+                if($this->upload->do_upload('photo')){
+                    if($this->Patient_model->ubahDataPasien($this->upload->data()))
+                        $this->session->set_flashdata('notifsukses','Berhasil mengubah profil foto');
+                    else
+                        $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+                }else
+                    $this->session->set_flashdata('notiferror',$this->upload->display_errors());
+            } else {
+                $photo = $this->Patient_model->getProfilePatient()->photo;
+                if($this->Patient_model->ubahDataPasien($photo))
+                    $this->session->set_flashdata('notifsukses','Berhasil mengubah profil ga');
+                else
+                    $this->session->set_flashdata('notiferror','Gagal mengubah profil');
+            }
+        } else 
+            $this->session->set_flashdata('notiferror','Lengkapi semua field');
+        redirect('Patient/showprofile');
+
 	}
 
 }

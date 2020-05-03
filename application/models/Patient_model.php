@@ -26,16 +26,19 @@ class Patient_model extends CI_Model{
 	}
 
 	//Mendapatkan data terbaru dari Pasien
-	public function ubahDataPasien() {
+	public function ubahDataPasien($photo) {
+        $idPasien = $this->session->userdata('id');
+        $oldphoto = $this->getProfilePatient()->photo;
+        $newfoto = $_FILES['photo']['name'];
 	    $data = array(
-                    'photo' => $this->input->post('photo'),
+                    'photo' => $newfoto ? $photo['file_name'] : $oldphoto,
                     'email' => $this->input->post('email'),
 					'alamat' => $this->input->post('alamat'),
 					'noHP' => $this->input->post('noHP'),
 					'umur' => $this->input->post('umur'),
 				);
 		//use query builder class to update data patient based on idPasien
-		$this->db->where('idPasien',$this->session->userdata('id'))->update('patients',$data);
+		return $this->db->where('idPasien',$idPasien)->update('patients', $data);
 	}
 }
 ?>
