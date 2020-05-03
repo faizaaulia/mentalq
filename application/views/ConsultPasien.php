@@ -50,13 +50,13 @@
 		</div>
     </nav>
     <br>
-    <div class="setconsult" style="margin-left: 625px;">What's happen?</div>
+    <div class="setconsult">We help you to get a solution</div>
 	  
     <hr>
     <br>
         <p class="p1">Describe your Problem</p>
         <form id="consult" action="<?= base_url('Patient/inputKeluhan')?>" method='post'>
-            <textarea rows="7" id="keluhan" name="keluhan" form="consult" style="margin-left: auto; margin-right:auto; width: 51%; margin-bottom: 10px;"></textarea>
+            <textarea placeholder="What's happen? . . ."rows="7" id="keluhan" name="keluhan" form="consult" style="margin-left: auto; margin-right:auto; width: 51%; margin-bottom: 10px; border: solid 1px #009492;"></textarea>
 			<p class="p1">Select your Consultant</p>
 			<select name="ConsultantList" style="margin: auto; display: block">
 			<?php foreach ($consultants as $consultant): ?>
