@@ -15,9 +15,9 @@ class Consultant_model extends CI_Model{
         $STR = $this->session->userdata('id');
         $data=array (
             //'nama_kolom' => $this->input->post('name_inputan'),
+            'photo' => $this->input->post('photo'),
             'jenisPsikologi' => $this->input->post('jenisPsikologi'),
             'lamaPsikologi' => $this->input->post('lamaPsikologi'),
-            'photo' => $this->input->post('photo'),
             'tempatPraktik' => $this->input->post('tempatPraktik'),
             'email' => $this->input->post('email'),
             'noHP' => $this->input->post('noHP'),
@@ -27,13 +27,16 @@ class Consultant_model extends CI_Model{
         $this->db->where('noSTR',$STR)->update('consultants', $data);
     }
     
-    // Mendapat Keliuhan dari Consults
+    // Mendapat Keluhan dari Consults
     public function getConsults() {
+        $STR = $this->session->userdata('id');
         $this->db->select('*')
-                 ->select('patients.namaPasien')
+                 ->select('consultants.namaConsultant')
                  ->from('consults')
-                 ->where('consults.idPasien',1)
+                 ->where('consults.noSTR',$STR)
+                 ->join('consultants', 'consultants.noSTR = consults.noSTR')
                  ->join('patients', 'patients.idPasien = consults.idPasien');
+ 
         return $this->db->get()->row();
         // return $this->db->where('noSTR', $STR)->get('consults')->row();
     }

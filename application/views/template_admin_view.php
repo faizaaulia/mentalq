@@ -26,7 +26,7 @@
     <div class="d-flex" id="wrapper">
         <!-- sidebar-wrapper -->
         <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading list-group-flush"><img src="logo.png" width="80%"></div>
+            <div class="sidebar-heading list-group-flush"><img src="<?= base_url('assets/img/LOGO KECIL MENTALQ.png')?>" width="80%"></div>
             <div class="list-group list-group-flush">
                 <a href="<?= base_url('admin') ?>" class="list-group-item list-group-item-action <?= $this->uri->segment(2) ? '' : 'active_tab' ?>" style="background-color: #f1f1f1;">Consultants</a>
                 <a href="<?= base_url('admin/patients') ?>" class="list-group-item list-group-item-action <?= $this->uri->segment(2) == 'patients' ? 'active_tab' : '' ?>" style="background-color: #f1f1f1;">Patients</a>
@@ -47,7 +47,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Nama Admin
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?= base_url('home/logout') ?>">Logout</a>

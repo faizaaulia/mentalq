@@ -19,9 +19,9 @@
 	<title>mentalQ</title>
 </head>
 
-<body style="background-image: url('<?= base_url('assets/BG ABU.jpg')?>');">
+<body style="background-image: url('<?= base_url('assets/img/BG ABU.jpg')?>');">
 	<nav class="navbar navbar-expand-lg">
-		<a class="navbar-brand" href="<?= base_url()?>"><img width="200px" src="<?= base_url('assets/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
+		<a class="navbar-brand" href="<?= base_url()?>"><img width="200px" src="<?= base_url('assets/img/LOGO KECIL MENTALQ.png')?>" alt=""> </a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="color: black">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -39,7 +39,7 @@
 				</li>
 			</ul>
 			<span class="navbar-text">
-				<a class="nav-link <?= $logged_in ? '' : 'modal-login' ?>" href="<?=$logged_in ? ($role == 'consultants' ? 'consultant/updateprofile' : 'patient/showprofile') : '#' ?>"><?= $logged_in ? ($role == 'consultants' ? $profile->namaConsultant : $profile->namaPasien) : 'Login' ?>
+				<a class="nav-link <?= $logged_in ? '' : 'modal-login' ?>" href="<?=$logged_in ? ($role == 'consultants' ? 'consultant/showprofile' : 'patient/showprofile') : '#' ?>"><?= $logged_in ? ($role == 'consultants' ? $profile->namaConsultant : $profile->namaPasien) : 'Login' ?>
 					<span class="sr-only">(current)</span>
 				</a>
 			</span>
@@ -51,14 +51,9 @@
 		</div>
 	</nav>
 
-	<div class="main-content">
-		<div class="tulisan">
-			<h4>Got Stressed?</h4>
-			<h4>Come and Consult with Us!</h4>
-		</div>
+	<br><br>
 
-		<div class="trendingtopic">
-			<h4>Trending Topic</h4>
+	<div class="trendingtopic">
 			<div class="container">
 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
@@ -68,25 +63,13 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<div class="card">
-								<div class="card-body">
-									This is some text within a card body.
-								</div>
-							</div>
+							<img width="60%" src="<?= base_url('assets/img/bullying.png')?>">
 						</div>
 						<div class="carousel-item">
-							<div class="card">
-								<div class="card-body">
-									This is some text within a card body.
-								</div>
-							</div>
+							<img width="60%" src="<?= base_url('assets/img/stressed.png')?>">
 						</div>
 						<div class="carousel-item">
-							<div class="card">
-								<div class="card-body">
-									This is some text within a card body.
-								</div>
-							</div>
+							<img width="60%" src="<?= base_url('assets/img/under_pressure.png')?>">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -102,6 +85,15 @@
 		</div>
 	</div>
 
+	<div class="main-content">
+		<div class="tulisan">
+			<p>A lot of things in your mind ?</p>
+			<p>Come and Consult with Us !</p>
+		</div>
+	<br>
+	<div class="lore">A mental disorder, also called a mental illness or psychiatric disorder, is a behavioral or mental pattern that causes significant distress or impairment of personal functioning. Such features may be persistent, relapsing and remitting, or occur as a single episode. Many disorders have been described, with signs and symptoms that vary widely between specific disorders. Such disorders may be diagnosed by a mental health professional.
+		The causes of mental disorders are often unclear. Theories may incorporate findings from a range of fields. Mental disorders are usually defined by a combination of how a person behaves, feels, perceives, or thinks. This may be associated with particular regions or functions of the brain, often in a social context. A mental disorder is one aspect of mental health. Cultural and religious beliefs, as well as social norms, should be taken into account when making a diagnosis.</div>
+	<br><br><br><br>
 	<!-- Modal Login -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">

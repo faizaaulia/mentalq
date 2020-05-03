@@ -6,7 +6,7 @@ class Patient_model extends CI_Model{
             'noSTR' => $this->input->post('ConsultantList'),
             'keluhan' => $this->input->post('keluhan'),
             'solusi' => '-',
-            'status' => '0'
+            'status' => 'Belum Selesai'
         );
         $this->db->insert('consults',$data);
     }
@@ -28,6 +28,7 @@ class Patient_model extends CI_Model{
 	//Mendapatkan data terbaru dari Pasien
 	public function ubahDataPasien() {
 	    $data = array(
+                    'photo' => $this->input->post('photo'),
                     'email' => $this->input->post('email'),
 					'alamat' => $this->input->post('alamat'),
 					'noHP' => $this->input->post('noHP'),

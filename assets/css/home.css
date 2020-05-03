@@ -11,12 +11,15 @@ body{
 }
     
 .nav-link{
-    color: black;
-    font-weight: bold;
+    color: #3b3b3b;
+}
+
+.nav-link:hover{
+    color: #009492;
 }
     
 .profile{
-    color: #239A94;
+    color: #009492;
     margin-right: 30px;
 }
 
@@ -26,13 +29,13 @@ body{
 }
 
 .btn.btn-login:hover {
-    background-color: #006968;
+    background-color: #009492;
     color: white;
 }
 
 .tulisan{
     text-align: center;
-    margin-top: 90px;
+    margin-top: 40px;
 }
 
 .tulisan h4{
@@ -41,12 +44,48 @@ body{
 
 .trendingtopic h4{
     text-align: center;
-    margin-top: 90px;
-    font-weight: bold;
+    margin-top: 50px;
 }
 
 .card{
     margin: 10px auto;
     padding: 60px 20px;
     width: 700px;
+    border: 0;
+}
+
+.modal-title{
+    color: #009492;
+}
+
+.modal-body{
+    color: #009492;
+    style="background-image: url('<?= base_url('assets/img/BG PUTIH.jpg')?>');"
+}
+
+p{
+    font-size: 20px;
+    font-style: italic;
+    color: #3b3b3b;
+    line-height: 12px;
+}
+
+.carousel-item{
+    text-align: center;
+}
+
+.lore{
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 15px;
+    text-align: justify;
+    text-indent: 50px;
+}
+
+.carousel-control-prev{
+    margin-left: 18%;
+}
+
+.carousel-control-next{
+    margin-right: 18%;
 }
