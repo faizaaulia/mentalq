@@ -22,4 +22,9 @@ class Admin_model extends CI_Model {
     public function insertConsultant($data) {
         return $this->db->insert('consultants',$data);
     }
+
+    public function getAdminProfile() {
+        return $this->db->where('idAdmin',$this->session->userdata('id'))
+                        ->get('admin')->row();
+    }
 }

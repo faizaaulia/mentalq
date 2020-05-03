@@ -47,10 +47,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?= $profile->namaAdmin ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="<?= base_url('home/logout') ?>">Logout</a>
+                                <a class="dropdown-item modal-logout" href="#">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -190,8 +190,7 @@
                 $('#dataTable tbody').on('click', 'a', function (e) {
                     e.preventDefault();
                     var data =  $('#dataTable').DataTable().row($(this).parents('tr')).data();
-                    const ACTION = this.href;
-                    this.href += data[4];
+                    const URL = this.href;
 
                     if ($(this).hasClass('detailConsultant') || $(this).hasClass('editConsultant')) {
                         if ($(this).hasClass('detailConsultant')) {
@@ -209,7 +208,7 @@
                             $('form').attr('name','update');
                         }
                         $.ajax({
-                            url: this.href,
+                            url: URL,
                             dataType: 'json',
                             success: function (res) {
                                 $('#modalAdd').modal('show');
@@ -227,7 +226,6 @@
                     }
 
                     if ($(this).hasClass('deleteConsultant')) {
-                        const URL = this.href;
                         Swal.fire({
                             title: 'Delete Consultant?',
                             text: 'Are you sure to delete ' + data[1] + '?',
@@ -253,7 +251,6 @@
                             }
                         });
                     }
-                    this.href = ACTION;
                 });
                 <?php if ($this->uri->segment(2)): ?>
                     fetchPatients();
@@ -317,6 +314,21 @@
                     $('.gender').removeClass('is-invalid');
                     $('.errormess').html('');
                 });
+
+                $('.modal-logout').click(function(e) {
+				e.preventDefault();
+				Swal.fire({
+                    title: 'Logging Out',
+                    text: 'Are you sure you want to logout?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+					if (result.value)
+						window.location.replace('<?= base_url('home/logout') ?>');
+				});
+			});
             })
         </script>
         <style>

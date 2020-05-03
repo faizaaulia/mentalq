@@ -13,13 +13,15 @@ class Admin extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in')) {
 			$data['main_view'] = 'admin_consultants_view';
+			$data['profile'] = $this->Admin_model->getAdminProfile();
 			$this->load->view('template_admin_view', $data);
 		} else
 			redirect('home');
 	}
-
+	
 	public function patients() {
 		$data['main_view'] = 'admin_patients_view';
+		$data['profile'] = $this->Admin_model->getAdminProfile();
 		$this->load->view('template_admin_view', $data);
 	}
 
@@ -156,7 +158,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('workplace', 'Workplace', 'required');
         $this->form_validation->set_rules('alumni', 'Alumni', 'required');
         $this->form_validation->set_rules('phone', 'Phone Number', 'required|min_length[10]|max_length[11]');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[consultants.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[consultants.email]|is_unique[patients.email]|is_unique[admin.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		
 		if ($this->form_validation->run()) {
@@ -170,7 +172,7 @@ class Admin extends CI_Controller {
 				'noHP' => $this->input->post('phone'),
 				'email' => $this->input->post('email'),
 				'password' => $this->input->post('password'),
-				'photo' => 'avatar.jpg', //default photo
+				'photo' => $this->input->post('gender') == 'male' ? 'avatarmale.jpg' : 'avatarfemale.jpg', //default photo
 				'lamaPsikologi' => '1 tahun',
 				'schedule' => date("Y-m-d"),
 				'jamKerja' => '12'
