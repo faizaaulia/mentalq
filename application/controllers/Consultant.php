@@ -17,9 +17,19 @@ class Consultant extends CI_Controller {
             redirect('home');
     }
     
+    public function index()
+    {
+        if ($this->session->userdata('logged_in')) {
+            $data['profile'] = $this->Consultant_model->getDataConsultant();
+            $this->load->view('home_view',$data);
+        } else
+            redirect('home');
+    }
+
 	public function Consultant() {
 	    if ($this->session->userdata('logged_in')) {
             $data['consultants'] = $this->Consultant_model->getDataConsultants();
+            $data['profile'] = $this->Consultant_model->getDataConsultant();
 		    $this->load->view('Consultant', $data);
         } else
             redirect('home');
@@ -34,6 +44,7 @@ class Consultant extends CI_Controller {
 	public function showProfile() {
 		if ($this->session->userdata('logged_in')) {
             $data['consultants']= $this->Consultant_model->getDataConsultant();
+            $data['profile'] = $this->Consultant_model->getDataConsultant();
 		    $this->load->view('profile_psikolog',$data);
         } else
             redirect('home');
@@ -42,7 +53,8 @@ class Consultant extends CI_Controller {
     // Mendapat Keliuhan dari Consults
     public function replyConsult() {
         if ($this->session->userdata('logged_in')) {
-            $data['consult'] = $this->Consultant_model->getConsults();
+            $data['consults'] = $this->Consultant_model->getConsults();
+            $data['profile'] = $this->Consultant_model->getDataConsultant();
             $this->load->view('consult_consultant',$data);
         } else
             redirect('home');

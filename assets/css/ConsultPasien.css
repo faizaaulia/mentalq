@@ -1,18 +1,23 @@
-a:hover{
-    color: #239A94;
-    }
-    .navbar-brand{
-    margin:10px;
-    }
-    .nav-item{
+*{
+    font-family: 'Open Sans';
+}
+
+body{
+    background-size: cover;
+}
+
+.nav-item{
     margin-left: 40px;
-    }
+}
     
-    .nav-link{
-    color: black;
-    margin : 10px;
-    font-weight: 500;
-    }
+.nav-link{
+    color: #3b3b3b;
+}
+
+.nav-link:hover{
+    color: #009492;
+}
+    
     
     .profile{
     margin-right: 30px;
@@ -48,15 +53,13 @@ a:hover{
     }
 
     textarea {
-        color: #169c9b;
-        font-weight: 700;
-        display: block;
-        font-family: 'Open Sans';
-        border: none;
+        color: #3b3b3b;
         text-decoration: none;
-        margin: auto;
-        margin-top: 0px;
-        border-radius: 35px;
+        display: block;    
+        margin-left: auto;
+        margin-right: auto;
+        width:70%;
+        border-radius: 20px;
         padding: 20px;
     }
 
@@ -71,24 +74,31 @@ a:hover{
 
     .p1{
         color: #169c9b;
+        text-align: center  ;
         font-family: 'Open Sans';
         font-weight: 600;
         font-size: 16px;
-        margin-left: 345px;
         margin-bottom: 13px;
     }
 
     select{
         color: #169c9b;
         font-family: 'Open Sans';
-        font-weight: 600;
         font-size: 16px;
-        margin-left: 345px;
-        margin-bottom: 13px;
-        border-radius: 35px;
-        height: 30px;
-        width: 685px;
-        padding-left: 10px;
+        border-radius: 10px;
+        padding: 10px;
         background-color: transparent;
-        border-color: #169c9b;
     }
+
+    .setconsult{
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        color: #3b3b3b;
+      }
+      
+      .setconsult-caption{
+        text-align: center;
+        font-size: 15px;
+        color: #bcbcbc;
+      }
