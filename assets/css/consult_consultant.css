@@ -1,73 +1,77 @@
-*{
-  font-family: 'Open Sans';
+* {
+	font-family: 'Open Sans';
 }
 
-body{
-    background-size: cover;
+body {
+	background-size: cover;
 }
 
-a:hover{
-  color: #239A94;
-}
-.navbar-brand{
-    margin:10px;
-}
-.nav-item{
-    margin-left: 40px;
-  }
-    
-  .nav-link{
-    color: #3b3b3b;
-  }
-  
-  .nav-link:hover{
-    color: #009492;
-  }
-  
-.profile{
-  margin-right: 30px;
-}
-.consult{
-  color : #239A94;
-  font-weight: bold;
-}
-.card{
-  margin : 10px auto;
+a:hover {
+	color: #239A94;
 }
 
-.card-text{
-  margin:0px;
-  text-align: justify;  
+.navbar-brand {
+	margin: 10px;
 }
 
-.name{
-  font-size: 20px;
-  font-weight: bold;
-  color : #239A94;
+.nav-item {
+	margin-left: 40px;
 }
 
-.replypatient{
-  text-align: center;
-  font-weight: bold;
-  font-size: 25px;
-  color: #3b3b3b;
+.nav-link {
+	color: #3b3b3b;
 }
 
-.replypatient-caption{
-  text-align: center;
-  font-size: 15px;
-  color: #bcbcbc;
+.nav-link:hover {
+	color: #009492;
+}
+
+.profile {
+	margin-right: 30px;
+}
+
+.consult {
+	color: #239A94;
+	font-weight: bold;
+}
+
+.card {
+	margin: 10px auto;
+}
+
+.card-text {
+	margin: 0px;
+	text-align: justify;
+}
+
+.name {
+	font-size: 20px;
+	font-weight: bold;
+	color: #239A94;
+}
+
+.replypatient {
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+	color: #3b3b3b;
+}
+
+.replypatient-caption {
+	text-align: center;
+	font-size: 15px;
+	color: #bcbcbc;
 }
 
 .btn.btn-set {
-  background-color: #009492;
-  width: 20%;
-  color: white;
-  float: right;
-  margin-top:15px;
+	background-color: #009492;
+	width: 20%;
+	color: white;
+	float: right;
+	margin-top: 15px;
 }
 
 .btn.btn-set:hover {
-  background-color: #00cecb;
-  color: white;
+	background-color: #00cecb;
+	color: white;
 }

@@ -37,21 +37,21 @@ class Consultant_model extends CI_Model{
                  ->from('consults')
                  ->where('consults.noSTR',$STR)
                  ->join('consultants', 'consultants.noSTR = consults.noSTR')
-                 ->join('patients', 'patients.idPasien = consults.idPasien');
+                 ->join('patients', 'patients.idPasien = consults.idPasien')
+                 ->order_by('consults.idConsult','desc');
  
         return $this->db->get()->result();
         // return $this->db->where('noSTR', $STR)->get('consults')->row();
     }
     
     // Mengeset Reply Consults yang sudah diisi di form Reply Consult
-    public function setReplyConsults(){
-        $STR = $this->session->userdata('id');
+    public function setReplyConsults($idConsult){
         $data=array (
             //'nama_kolom' => $this->input->post('name_inputan'),
             'status' => $this->input->post('status'),
             'solusi' => $this->input->post('solusi'),
         );
-        $this->db->where('noSTR',$STR)->update('consults', $data);
+        return $this->db->where('idConsult',$idConsult)->update('consults', $data);
     }
 
 	public function getConsultantProfile($noSTR) {

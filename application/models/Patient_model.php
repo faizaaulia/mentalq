@@ -8,7 +8,7 @@ class Patient_model extends CI_Model{
             'solusi' => '-',
             'status' => 'Belum Selesai'
         );
-        $this->db->insert('consults',$data);
+        return $this->db->insert('consults',$data);
     }
 
     Public function getConsult() {

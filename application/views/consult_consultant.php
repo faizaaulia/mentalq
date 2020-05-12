@@ -58,6 +58,17 @@
 		<?php foreach ($consults as $consult): ?>
 		<div class="card" style="width: 50rem;">
 			<div class="card-body">
+			<?php
+				$notifsukses = $this->session->flashdata('notifsukses');
+				$notiferror = $this->session->flashdata('notiferror');
+				$id = $this->session->flashdata('idConsult');
+				if ($consult->idConsult == $id) {
+					if (!empty($notifsukses)) 
+						echo "<div class='alert alert-success mb-3' style='margin: auto; display: block; text-align: center'>$notifsukses</div>";
+					if (!empty($notiferror)) 
+						echo "<div class='alert alert-danger mb-3' style='margin: auto; display: block; text-align: center'>$notiferror</div>";
+				}
+			?>
 				<p class="card-text">From</p>
 				<p class="card-text name"><?=$consult->namaPasien ?></p>
 				<hr>
@@ -65,7 +76,7 @@
 				<hr>
 
 				<!-- Form Set Reply Consults -->
-				<form action="<?=base_url('Consultant/setReplyConsults')?>" method=POST>
+				<form action="<?=base_url('Consultant/setReplyConsults/').$consult->idConsult?>" method="POST">
 					<label for="status">Status : </label>
 					<select id="status" name="status" value="<?=$consult->status ?>">
 						<option value="Belum Selesai" <?= ($consult->status == 'Belum Selesai') ? "selected" : "" ?>>Belum Selesai</option>

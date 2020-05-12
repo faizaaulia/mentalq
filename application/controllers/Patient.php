@@ -28,7 +28,14 @@ class Patient extends CI_Controller {
 	}
 
 	public function inputKeluhan() {
-		$this->Patient_model->insertKeluhan();
+		$this->form_validation->set_rules('keluhan', 'Keluhan', 'required|min_length[5]');
+		if ($this->form_validation->run()) {
+			if ($this->Patient_model->insertKeluhan())
+				$this->session->set_flashdata('notifsukses','Berhasil mengirim keluhan');
+			else
+				$this->session->set_flashdata('notiferror','Gagal mengirim keluhan');
+		} else
+			$this->session->set_flashdata('notiferror', validation_errors());
 		redirect('Patient/consultpatient');
 	}
 

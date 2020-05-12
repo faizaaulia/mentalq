@@ -53,9 +53,17 @@ class Consultant extends CI_Controller {
         
         
     // Mengeset Profil yang sudah diisi di form Edit Profil
-    public function setReplyConsults() {
-        $this->Consultant_model->setReplyConsults();
-        redirect('Consultant/replyconsult');
+    public function setReplyConsults($idConsult) {
+        $this->form_validation->set_rules('solusi', 'Solusi', 'required|min_length[5]');
+        if ($this->form_validation->run()) {
+            if ($this->Consultant_model->setReplyConsults($idConsult))
+                $this->session->set_flashdata('notifsukses','Berhasil mengirim solusi');
+			else
+                $this->session->set_flashdata('notiferror','Gagal mengirim solusi');
+        } else 
+            $this->session->set_flashdata('notiferror',validation_errors());
+        $this->session->set_flashdata('idConsult',$idConsult);
+        redirect('consultant/replyconsult');
     }
         
     // Mendapat Profil dari Consultant
